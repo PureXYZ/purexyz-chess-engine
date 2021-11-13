@@ -1,36 +1,21 @@
-# maven-java-project-template
+# purexyz-chess-engine
 
-[![Tests](https://github.com/PureXYZ/maven-java-project-template/actions/workflows/maven-tests.yml/badge.svg?branch=main&event=push)](https://github.com/PureXYZ/maven-java-project-template/actions/workflows/maven-tests.yml)
-[![CheckStyle](https://github.com/PureXYZ/maven-java-project-template/actions/workflows/maven-style.yml/badge.svg?branch=main&event=push)](https://github.com/PureXYZ/maven-java-project-template/actions/workflows/maven-style.yml)
+[![Tests](https://github.com/PureXYZ/purexyz-chess-engine/actions/workflows/maven-tests.yml/badge.svg?branch=main&event=push)](https://github.com/PureXYZ/purexyz-chess-engine/actions/workflows/maven-tests.yml)
+[![CheckStyle](https://github.com/PureXYZ/purexyz-chess-engine/actions/workflows/maven-style.yml/badge.svg?branch=main&event=push)](https://github.com/PureXYZ/purexyz-chess-engine/actions/workflows/maven-style.yml)
 
-### Structure
-<pre>
-|-- src
-    |-- main
-    |   |-- java
-    |       |-- com
-    |           |-- purexyz
-    |               |-- App.java
-    |-- test
-        |-- java
-            |-- com
-                |-- purexyz
-                    |-- AppTest.java
-</pre>
+---
+
+UCI chess engine written in Java 17
+
 
 ### Docker build
 ```
-docker build -t maven-java-project-template:latest .
+docker build -t purexyz-chess-engine:latest .
 ```
 
 ### Docker run
 ```
-docker run -i --rm --name maven-java-project-template maven-java-project-template:latest
-```
-
-### Output
-```
-[main] INFO com.purexyz.App - Hello World!
+docker run -i --rm --name purexyz-chess-engine purexyz-chess-engine:latest
 ```
 
 ### Style

@@ -7,4 +7,4 @@ RUN mvn -Dmaven.test.failure.ignore=true -f /home/app/pom.xml clean install
 # Package stage
 FROM openjdk:17
 COPY --from=build /home/app/target /usr/local/lib
-ENTRYPOINT ["java","-jar","/usr/local/lib/maven-java-project-template-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/usr/local/lib/purexyz-chess-engine-1.0-SNAPSHOT.jar"]
