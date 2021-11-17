@@ -2,7 +2,7 @@
 FROM maven:3.6.3-openjdk-17 AS build
 COPY src /home/app/src
 COPY pom.xml /home/app
-RUN mvn -Dmaven.test.failure.ignore=true -f /home/app/pom.xml clean install
+RUN mvn -Dmaven.test.failure.ignore=true -Dcheckstyle.skip -f /home/app/pom.xml clean install
 
 # Package stage
 FROM openjdk:17
