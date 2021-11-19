@@ -1,9 +1,7 @@
 package com.purexyz.uci.input.engine;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
-@Getter
 @AllArgsConstructor
 public class EngineResult {
 
@@ -16,5 +14,11 @@ public class EngineResult {
 
   public static EngineResult emptyResult() {
     return emptyResult;
+  }
+
+  public void printResult() {
+    if (!isEmpty()) {
+      System.out.println(result);
+    }
   }
 }

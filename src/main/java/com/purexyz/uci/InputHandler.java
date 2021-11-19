@@ -41,22 +41,23 @@ public class InputHandler {
 
     try {
       if (engineCall.shouldCallAsync()) {
-        CompletableFuture.supplyAsync(engineCall)
-            .thenAccept(
-                engineResult -> {
-                  if (!engineResult.isEmpty()) {
-                    System.out.println(engineResult.getResult());
-                  }
-                })
-            .get();
+        callAsync(engineCall);
       } else {
-        EngineResult engineResult = engineCall.get();
-        if (!engineResult.isEmpty()) {
-          System.out.println(engineResult.getResult());
-        }
+        callSync(engineCall);
       }
     } catch (Exception e) {
       log.error("Error calling engine with input: {}, call:{}", input, engineCall, e);
     }
+  }
+
+  private void callAsync(AbstractEngineCall engineCall) {
+    CompletableFuture
+        .supplyAsync(engineCall)
+        .thenAccept(engineResult -> engineResult.printResult());
+  }
+
+  private void callSync(AbstractEngineCall engineCall) {
+    EngineResult engineResult = engineCall.get();
+    engineResult.printResult();
   }
 }
