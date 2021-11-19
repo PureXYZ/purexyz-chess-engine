@@ -1,5 +1,7 @@
-package com.purexyz.uci.input;
+package com.purexyz.uci;
 
+import com.purexyz.uci.input.InputMapper;
+import com.purexyz.uci.input.InputTokenizer;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.engine.EngineResult;
 import com.purexyz.uci.input.token.InputToken;

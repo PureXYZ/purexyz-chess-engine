@@ -1,6 +1,6 @@
 package com.purexyz;
 
-import com.purexyz.uci.input.InputHandler;
+import com.purexyz.uci.InputHandler;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Scanner;
