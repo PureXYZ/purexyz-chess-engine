@@ -1,11 +1,12 @@
 package com.purexyz.uci.input;
 
+import com.purexyz.uci.input.engine.AbstractEngineCall;
+import com.purexyz.uci.input.engine.EngineResult;
 import com.purexyz.uci.input.token.InputToken;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.Callable;
 
 @Slf4j
 public class InputHandler {
@@ -27,17 +28,25 @@ public class InputHandler {
 
   public void handleInput(String input) {
     List<InputToken> tokens = inputTokenizer.tokenize(input);
-    Optional<Callable<String>> engineCall = inputMapper.map(tokens);
+    Optional<AbstractEngineCall> engineCallOpt = inputMapper.map(tokens);
 
-    if (engineCall.isEmpty()) {
+    if (engineCallOpt.isEmpty()) {
       return;
     }
 
+    AbstractEngineCall engineCall = engineCallOpt.get();
+
     try {
-        String result = engineCall.get().call();
-        System.out.println(result);
+      if (engineCall.shouldCallAsync()) {
+        // TODO handle async
+      } else {
+        EngineResult result = engineCall.call();
+        if (!result.isEmpty()) {
+          System.out.println(result.getResult());
+        }
+      }
     } catch (Exception e) {
-      log.error("Error calling engine with input: {}, call:{}", input, engineCall.get(), e);
+      log.error("Error calling engine with input: {}, call:{}", input, engineCall, e);
     }
   }
 }

@@ -1,5 +1,7 @@
 package com.purexyz.uci.input;
 
+import com.purexyz.uci.input.engine.AbstractEngineCall;
+import com.purexyz.uci.input.engine.calls.Quit;
 import com.purexyz.uci.input.token.CommandInputToken;
 import com.purexyz.uci.input.token.InputToken;
 import com.purexyz.uci.input.token.InputToken.Type;
@@ -7,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.Callable;
 
 @Slf4j
 public class InputMapper {
@@ -24,7 +25,7 @@ public class InputMapper {
     return INSTANCE;
   }
 
-  public Optional<Callable<String>> map(List<InputToken> tokens) {
+  public Optional<AbstractEngineCall> map(List<InputToken> tokens) {
 
     tokens = normalize(tokens);
 
@@ -34,7 +35,7 @@ public class InputMapper {
 
     // TODO temporarily handle quit
     if (tokens.get(0) == CommandInputToken.QUIT) {
-      System.exit(0);
+      return Optional.of(new Quit());
     }
 
     // TODO get Callable engine call

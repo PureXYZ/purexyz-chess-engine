@@ -5,9 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Scanner;
 
-/**
- * Hello world program.
- */
+/** Hello world program. */
 @Slf4j
 public class App {
 
