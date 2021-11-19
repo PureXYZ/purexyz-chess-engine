@@ -1,6 +1,9 @@
 package com.purexyz;
 
+import com.purexyz.uci.input.InputHandler;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Scanner;
 
 /**
  * Hello world program.
@@ -8,7 +11,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
+  private static final InputHandler inputHandler = InputHandler.getInstance();
+
   public static void main(String[] args) {
-    log.info("Hello World!");
+
+    Scanner scanner = new Scanner(System.in);
+
+    while (scanner.hasNext()) {
+      String input = scanner.nextLine();
+      inputHandler.handleInput(input);
+    }
   }
 }
