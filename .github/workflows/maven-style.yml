@@ -22,4 +22,4 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Run CheckStyle
-        run: mvn --batch-mode --update-snapshots -Dcheckstyle.skip checkstyle:check
+        run: mvn --batch-mode --update-snapshots -Dmaven.test.failure.ignore=true checkstyle:check
