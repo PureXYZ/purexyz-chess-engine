@@ -1,5 +1,6 @@
 package com.purexyz.uci.input;
 
+import com.purexyz.uci.input.token.CommandInputToken;
 import com.purexyz.uci.input.token.InputToken;
 import com.purexyz.uci.input.token.InputToken.Type;
 import lombok.extern.slf4j.Slf4j;
@@ -31,9 +32,9 @@ public class InputMapper {
       return Optional.empty();
     }
 
-    InputToken firstToken = tokens.get(0);
-    if (Type.COMMAND != firstToken.getType()) {
-      return Optional.empty();
+    // TODO temporarily handle quit
+    if (tokens.get(0) == CommandInputToken.QUIT) {
+      System.exit(0);
     }
 
     // TODO get Callable engine call
@@ -50,7 +51,9 @@ public class InputMapper {
     while (!tokens.isEmpty()) {
       InputToken currentToken = tokens.get(0);
 
-      if (Type.COMMAND != currentToken.getType()) {
+      if (Type.COMMAND == currentToken.getType()) {
+        break;
+      } else {
         tokens.remove(currentToken);
       }
     }
