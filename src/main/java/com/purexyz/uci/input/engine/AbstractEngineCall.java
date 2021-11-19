@@ -1,11 +1,10 @@
 package com.purexyz.uci.input.engine;
 
+import java.util.function.Supplier;
 import lombok.Getter;
 
-import java.util.concurrent.Callable;
-
 @Getter
-public abstract class AbstractEngineCall implements Callable<EngineResult> {
+public abstract class AbstractEngineCall implements Supplier<EngineResult> {
 
   public abstract boolean shouldCallAsync();
 }

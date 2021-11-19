@@ -5,6 +5,7 @@ import com.purexyz.uci.input.InputTokenizer;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.engine.EngineResult;
 import com.purexyz.uci.input.token.InputToken;
+import java.util.concurrent.CompletableFuture;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -40,11 +41,18 @@ public class InputHandler {
 
     try {
       if (engineCall.shouldCallAsync()) {
-        // TODO handle async
+        CompletableFuture.supplyAsync(engineCall)
+            .thenAccept(
+                engineResult -> {
+                  if (!engineResult.isEmpty()) {
+                    System.out.println(engineResult.getResult());
+                  }
+                })
+            .get();
       } else {
-        EngineResult result = engineCall.call();
-        if (!result.isEmpty()) {
-          System.out.println(result.getResult());
+        EngineResult engineResult = engineCall.get();
+        if (!engineResult.isEmpty()) {
+          System.out.println(engineResult.getResult());
         }
       }
     } catch (Exception e) {
