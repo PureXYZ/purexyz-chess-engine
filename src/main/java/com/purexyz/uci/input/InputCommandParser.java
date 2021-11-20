@@ -1,14 +1,24 @@
 package com.purexyz.uci.input;
 
 import com.purexyz.uci.input.engine.AbstractEngineCall;
+import com.purexyz.uci.input.engine.calls.DebugCall;
+import com.purexyz.uci.input.engine.calls.GoCall;
+import com.purexyz.uci.input.engine.calls.IsReadyCall;
+import com.purexyz.uci.input.engine.calls.PonderHitCall;
+import com.purexyz.uci.input.engine.calls.PositionCall;
 import com.purexyz.uci.input.engine.calls.QuitCall;
+import com.purexyz.uci.input.engine.calls.RegisterCall;
+import com.purexyz.uci.input.engine.calls.SetOptionCall;
+import com.purexyz.uci.input.engine.calls.StopCall;
 import com.purexyz.uci.input.engine.calls.UciCall;
+import com.purexyz.uci.input.engine.calls.UciNewGameCall;
 import com.purexyz.uci.input.token.CommandInputToken;
 import com.purexyz.uci.input.token.InputToken;
 import com.purexyz.uci.input.token.InputToken.Type;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
+import net.sf.saxon.functions.Abs;
 
 /** Parses tokens to build engine call. */
 @Slf4j
@@ -37,15 +47,15 @@ public class InputCommandParser {
 
     AbstractEngineCall result = switch (command) {
       case UCI -> uci();
-      case DEBUG -> null;
-      case IS_READY -> null;
-      case SET_OPTION -> null;
-      case REGISTER -> null;
-      case UCI_NEW_GAME -> null;
-      case POSITION -> null;
-      case GO -> null;
-      case STOP -> null;
-      case PONDER_HIT -> null;
+      case DEBUG -> debug();
+      case IS_READY -> isReady();
+      case SET_OPTION -> setOption();
+      case REGISTER -> register();
+      case UCI_NEW_GAME -> uciNewGame();
+      case POSITION -> position();
+      case GO -> go();
+      case STOP -> stop();
+      case PONDER_HIT -> ponderHit();
       case QUIT -> quit();
       default -> null;
     };
@@ -80,5 +90,50 @@ public class InputCommandParser {
   private static AbstractEngineCall uci() {
     log.info("Creating uci engine call");
     return new UciCall();
+  }
+
+  private static AbstractEngineCall debug() {
+    log.info("Creating debug engine call");
+    return new DebugCall();
+  }
+
+  private static AbstractEngineCall isReady() {
+    log.info("Creating isready engine call");
+    return new IsReadyCall();
+  }
+
+  private static AbstractEngineCall setOption() {
+    log.info("Creating setoption engine call");
+    return new SetOptionCall();
+  }
+
+  private static AbstractEngineCall register() {
+    log.info("Creating register engine call");
+    return new RegisterCall();
+  }
+
+  private static AbstractEngineCall uciNewGame() {
+    log.info("Creating ucinewgame engine call");
+    return new UciNewGameCall();
+  }
+
+  private static AbstractEngineCall position() {
+    log.info("Creating position engine call");
+    return new PositionCall();
+  }
+
+  private static AbstractEngineCall go() {
+    log.info("Creating go engine call");
+    return new GoCall();
+  }
+
+  private static AbstractEngineCall stop() {
+    log.info("Creating stop engine call");
+    return new StopCall();
+  }
+
+  private static AbstractEngineCall ponderHit() {
+    log.info("Creating ponderhit engine call");
+    return new PonderHitCall();
   }
 }
