@@ -5,30 +5,39 @@ import com.purexyz.uci.input.InputTokenizer;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.engine.EngineResult;
 import com.purexyz.uci.input.token.InputToken;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.List;
-import java.util.Optional;
-
+/** Handles string input from stdin. */
 @Slf4j
 public class InputHandler {
 
-  private static InputHandler INSTANCE;
+  private static InputHandler instance;
 
   private static final InputTokenizer inputTokenizer = InputTokenizer.getInstance();
   private static final InputMapper inputMapper = InputMapper.getInstance();
 
   private InputHandler() {}
 
+  /**
+   * Singleton.
+   *
+   * @return Get instance. */
   public static InputHandler getInstance() {
-    if (INSTANCE == null) {
-      INSTANCE = new InputHandler();
+    if (instance == null) {
+      instance = new InputHandler();
     }
 
-    return INSTANCE;
+    return instance;
   }
 
+  /**
+   * Handles input from stdin.
+   * Makes call to engine and prints result.
+   *
+   * @param input User input from stdin. */
   public void handleInput(String input) {
 
     log.info("Handling input: {}", input);

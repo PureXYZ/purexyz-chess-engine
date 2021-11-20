@@ -10,21 +10,18 @@ import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 
+/** Parses tokens to build engine call. */
 @Slf4j
 public class InputCommandParser {
 
-  private static InputCommandParser INSTANCE;
-
   private InputCommandParser() {}
 
-  public static InputCommandParser getInstance() {
-    if (INSTANCE == null) {
-      INSTANCE = new InputCommandParser();
-    }
-
-    return INSTANCE;
-  }
-
+  /**
+  * Gets specific engine call for tokenized command.
+  *
+  * @param inputTokens Representing a command.
+  * @return Built engine call.
+  */
   public static Optional<AbstractEngineCall> getEngineCall(List<InputToken> inputTokens) {
 
     log.info("Parsing tokens: {}", inputTokens);
@@ -42,7 +39,7 @@ public class InputCommandParser {
       return Optional.of(quit());
     }
 
-    AbstractEngineCall result = switch(command) {
+    AbstractEngineCall result = switch (command) {
       case UCI -> uci();
       case DEBUG -> null;
       case IS_READY -> null;

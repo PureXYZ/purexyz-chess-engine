@@ -2,6 +2,7 @@ package com.purexyz.uci.input.engine;
 
 import lombok.extern.slf4j.Slf4j;
 
+/** Record representing string output of engine. */
 @Slf4j
 public record EngineResult(String result) {
 
@@ -15,6 +16,9 @@ public record EngineResult(String result) {
     return result == null || result.isBlank();
   }
 
+  /**
+  * Print the engine output.
+  */
   public void printResult() {
     if (!isEmpty()) {
       log.info("Printing result: {}", result);

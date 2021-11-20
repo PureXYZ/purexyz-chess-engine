@@ -3,28 +3,38 @@ package com.purexyz.uci.input;
 import com.purexyz.uci.input.token.CommandInputToken;
 import com.purexyz.uci.input.token.InputToken;
 import com.purexyz.uci.input.token.UserInputToken;
-
 import java.util.LinkedList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
+/** Creates tokens from user input string. */
 @Slf4j
 public class InputTokenizer {
 
-  private static InputTokenizer INSTANCE;
+  private static InputTokenizer instance;
 
   private static final String WHITESPACE_REGEX = "\\s+";
 
   private InputTokenizer() {}
 
+  /**
+   * Singleton.
+   *
+   * @return Gets instance. */
   public static InputTokenizer getInstance() {
-    if (INSTANCE == null) {
-      INSTANCE = new InputTokenizer();
+    if (instance == null) {
+      instance = new InputTokenizer();
     }
 
-    return INSTANCE;
+    return instance;
   }
 
+  /**
+   * Creates a list of tokens from user input string.
+   *
+   * @param inputLine From user input.
+   * @return List of tokens.
+   */
   public List<InputToken> tokenize(String inputLine) {
 
     log.info("Tokenizing input: {}", inputLine);

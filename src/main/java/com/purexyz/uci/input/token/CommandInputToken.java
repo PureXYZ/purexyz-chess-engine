@@ -6,6 +6,7 @@ import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/** Input token for uci command. */
 @Slf4j
 @AllArgsConstructor
 public enum CommandInputToken implements InputToken {
@@ -53,6 +54,12 @@ public enum CommandInputToken implements InputToken {
     Arrays.stream(values()).forEach(t -> inputTokenMap.put(t.getValue(), t));
   }
 
+  /**
+   * Checks if input string is uci command.
+   *
+   * @param inputString Token string.
+   * @return True input if is command.
+   */
   public static boolean isCommand(String inputString) {
     if (inputString == null) {
       log.info("Input string is null");
@@ -69,6 +76,12 @@ public enum CommandInputToken implements InputToken {
     return Type.COMMAND == token.getType();
   }
 
+  /**
+   * Get command token from input string.
+   *
+   * @param inputString String from user input.
+   * @return CommandInputToken.
+   */
   public static CommandInputToken of(String inputString) {
     if (inputString == null) {
       log.info("Input string is null");

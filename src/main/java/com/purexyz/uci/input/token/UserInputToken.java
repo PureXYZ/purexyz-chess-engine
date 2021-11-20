@@ -2,6 +2,7 @@ package com.purexyz.uci.input.token;
 
 import lombok.AllArgsConstructor;
 
+/** Input token for user input. */
 @AllArgsConstructor
 public class UserInputToken implements InputToken {
 

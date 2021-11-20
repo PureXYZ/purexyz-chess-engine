@@ -3,27 +3,36 @@ package com.purexyz.uci.input;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.token.InputToken;
 import com.purexyz.uci.input.token.InputToken.Type;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.List;
 import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
 
+/** Maps input tokens to AbstractEngineCall. */
 @Slf4j
 public class InputMapper {
 
-  private static InputMapper INSTANCE;
-  private static InputCommandParser inputCommandParser = InputCommandParser.getInstance();
+  private static InputMapper instance;
 
   private InputMapper() {}
 
+  /**
+   * Singleton.
+   *
+   * @return Get InputMapper instance. */
   public static InputMapper getInstance() {
-    if (INSTANCE == null) {
-      INSTANCE = new InputMapper();
+    if (instance == null) {
+      instance = new InputMapper();
     }
 
-    return INSTANCE;
+    return instance;
   }
 
+  /**
+   * Maps input tokens to engine call.
+   *
+   * @param tokens from input.
+   * @return AbstractEngineCall if successfully maps input to command.
+   */
   public Optional<AbstractEngineCall> map(List<InputToken> tokens) {
     tokens = normalize(tokens);
 

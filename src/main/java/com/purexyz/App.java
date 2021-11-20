@@ -1,16 +1,20 @@
 package com.purexyz;
 
 import com.purexyz.uci.InputHandler;
+import java.util.Scanner;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Scanner;
-
-/** Hello world program. */
+/** Uci chess engine. */
 @Slf4j
 public class App {
 
   private static final InputHandler inputHandler = InputHandler.getInstance();
 
+  /**
+   * Listens for input from stdin.
+   * Expects uci commands.
+   *
+   * @param args Program arguments. */
   public static void main(String[] args) {
     log.info("Starting application");
 
