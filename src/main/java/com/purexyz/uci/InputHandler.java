@@ -1,5 +1,6 @@
 package com.purexyz.uci;
 
+import com.purexyz.exceptions.InternalEngineException;
 import com.purexyz.uci.input.InputMapper;
 import com.purexyz.uci.input.InputTokenizer;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
@@ -62,9 +63,12 @@ public class InputHandler {
   }
 
   private void callAsync(AbstractEngineCall engineCall) {
-    CompletableFuture
-        .supplyAsync(engineCall)
-        .thenAccept(EngineResult::printResult);
+    CompletableFuture.supplyAsync(engineCall)
+        .thenAccept(EngineResult::printResult)
+        .exceptionally(
+            t -> {
+              throw new InternalEngineException(t);
+            });
   }
 
   private void callSync(AbstractEngineCall engineCall) {

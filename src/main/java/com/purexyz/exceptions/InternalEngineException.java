@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Exception thrown by chess engine.
- * AbstractEngineCall catches exceptions, so unrecoverable errors must exit. */
+ * Unrecoverable errors must exit. */
 @Slf4j
 public class InternalEngineException extends RuntimeException {
 
@@ -12,9 +12,9 @@ public class InternalEngineException extends RuntimeException {
    * InternalEngineException.
    *
    * @param e Exception.*/
-  public InternalEngineException(Exception e) {
+  public InternalEngineException(Throwable e) {
     super(e);
-    log.error("InternalEngineException thrown, Exception: {}", e, this);
+    log.error("InternalEngineException thrown, Throwable: {}", e, this);
     exit();
   }
 
