@@ -1,5 +1,6 @@
 package com.purexyz.uci;
 
+import com.purexyz.engine.EngineState;
 import com.purexyz.exceptions.InternalEngineException;
 import com.purexyz.uci.input.InputMapper;
 import com.purexyz.uci.input.InputTokenizer;
@@ -53,7 +54,7 @@ public class InputHandler {
 
     AbstractEngineCall engineCall = engineCallOpt.get();
 
-    if (engineCall.shouldCallAsync()) {
+    if (EngineState.getEnableAsync() && engineCall.shouldCallAsync()) {
       log.info("Calling async call: {}", engineCall);
       callAsync(engineCall);
     } else {

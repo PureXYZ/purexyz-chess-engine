@@ -1,5 +1,6 @@
 package com.purexyz.uci.input.engine.calls;
 
+import com.purexyz.engine.EngineState;
 import com.purexyz.engine.option.EngineOptions;
 import com.purexyz.engine.option.Option;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
@@ -13,7 +14,7 @@ public class UciCall extends AbstractEngineCall {
 
   @Override
   public boolean shouldCallAsync() {
-    return false;
+    return true;
   }
 
   @Override
@@ -26,6 +27,7 @@ public class UciCall extends AbstractEngineCall {
     builder.append("id author PureXYZ");
     builder.append(System.lineSeparator());
 
+    EngineState.setupEngineState();
     Collection<Option> options = EngineOptions.getOptions();
     if (options != null && !options.isEmpty()) {
       for (Option option : options) {
