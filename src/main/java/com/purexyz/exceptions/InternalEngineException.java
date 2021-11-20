@@ -8,7 +8,7 @@ public class InternalEngineException extends CompletionException {
 
   public InternalEngineException(Exception e) {
     super(e);
-    log.error(message, this);
+    log.error("InternalEngineException thrown, Exception: {}", e, this);
   }
 
   public InternalEngineException(String message) {

@@ -25,7 +25,7 @@ public class InputTokenizer {
 
   public List<InputToken> tokenize(String inputLine) {
 
-    if (inputLine == null) {
+    if (inputLine == null || inputLine.isBlank()) {
       return List.of();
     }
 

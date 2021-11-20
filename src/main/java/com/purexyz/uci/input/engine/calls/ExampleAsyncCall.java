@@ -1,6 +1,5 @@
 package com.purexyz.uci.input.engine.calls;
 
-import com.purexyz.exceptions.InternalEngineException;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.engine.EngineResult;
 import lombok.AllArgsConstructor;
@@ -17,7 +16,7 @@ public class ExampleAsyncCall extends AbstractEngineCall {
 
   @Override
   public EngineResult compute() throws InterruptedException {
-    Thread.sleep(10000);
+    Thread.sleep(1000);
     return new EngineResult(value);
   }
 }

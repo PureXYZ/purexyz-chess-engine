@@ -4,10 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 @AllArgsConstructor
-@Getter
 public enum CommandInputToken implements InputToken {
   UCI("uci"),
   DEBUG("debug"),
@@ -43,7 +41,7 @@ public enum CommandInputToken implements InputToken {
   PONDER_HIT("ponderhit"),
   QUIT("quit");
 
-  String input;
+  private final String input;
 
   private static final Map<String, CommandInputToken> inputTokenMap;
 
@@ -53,9 +51,8 @@ public enum CommandInputToken implements InputToken {
   }
 
   public static boolean isCommand(String inputString) {
-
     if (inputString == null) {
-      return false;
+      throw new NullPointerException();
     }
 
     CommandInputToken token = inputTokenMap.get(inputString);
@@ -68,7 +65,6 @@ public enum CommandInputToken implements InputToken {
   }
 
   public static CommandInputToken of(String inputString) {
-
     if (inputString == null) {
       throw new NullPointerException();
     }

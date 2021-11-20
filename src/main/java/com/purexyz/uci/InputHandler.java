@@ -39,14 +39,10 @@ public class InputHandler {
 
     AbstractEngineCall engineCall = engineCallOpt.get();
 
-    try {
-      if (engineCall.shouldCallAsync()) {
-        callAsync(engineCall);
-      } else {
-        callSync(engineCall);
-      }
-    } catch (Exception e) {
-      log.error("Error calling engine with input: {}, call:{}", input, engineCall, e);
+    if (engineCall.shouldCallAsync()) {
+      callAsync(engineCall);
+    } else {
+      callSync(engineCall);
     }
   }
 

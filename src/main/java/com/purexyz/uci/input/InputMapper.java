@@ -27,7 +27,6 @@ public class InputMapper {
   }
 
   public Optional<AbstractEngineCall> map(List<InputToken> tokens) {
-
     tokens = normalize(tokens);
 
     if (tokens.isEmpty()) {
@@ -44,7 +43,6 @@ public class InputMapper {
   }
 
   private List<InputToken> normalize(List<InputToken> tokens) {
-
     if (tokens == null || tokens.isEmpty()) {
       return List.of();
     }

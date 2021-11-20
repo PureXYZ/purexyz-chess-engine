@@ -8,6 +8,5 @@ public interface InputToken {
   }
 
   String getValue();
-
   Type getType();
 }
