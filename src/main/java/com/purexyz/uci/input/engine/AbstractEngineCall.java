@@ -11,4 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class AbstractEngineCall implements Supplier<EngineResult> {
 
   public abstract boolean shouldCallAsync();
+
+  protected static void appendWithNewLine(StringBuilder builder, String line) {
+    builder.append(line);
+    builder.append(System.lineSeparator());
+  }
 }

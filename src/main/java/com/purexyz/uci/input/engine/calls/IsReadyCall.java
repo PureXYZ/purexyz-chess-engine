@@ -15,7 +15,6 @@ public class IsReadyCall extends AbstractEngineCall {
   @Override
   public EngineResult get() {
     log.info("Computing isready call");
-
     return EngineResult.emptyResult();
   }
 }

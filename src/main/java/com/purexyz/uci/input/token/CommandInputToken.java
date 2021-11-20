@@ -62,14 +62,14 @@ public enum CommandInputToken implements InputToken {
    */
   public static boolean isCommand(String inputString) {
     if (inputString == null) {
-      log.info("Input string is null");
+      log.error("Input string is null");
       throw new NullPointerException();
     }
 
     CommandInputToken token = inputTokenMap.get(inputString);
 
     if (token == null) {
-      log.info("Command token not found with input: {}", inputString);
+      log.warn("Command token not found with input: {}", inputString);
       return false;
     }
 
@@ -84,14 +84,14 @@ public enum CommandInputToken implements InputToken {
    */
   public static CommandInputToken of(String inputString) {
     if (inputString == null) {
-      log.info("Input string is null");
+      log.error("Input string is null");
       throw new NullPointerException();
     }
 
     CommandInputToken token = inputTokenMap.get(inputString);
 
     if (token == null) {
-      log.info("Command token not found with input: {}", inputString);
+      log.error("Command token not found with input: {}", inputString);
       throw new IllegalArgumentException();
     }
 

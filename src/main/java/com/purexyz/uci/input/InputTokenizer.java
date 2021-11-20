@@ -30,7 +30,7 @@ public class InputTokenizer {
   }
 
   /**
-   * Creates a list of tokens from user input string.
+   * Creates a queue of tokens from user input string.
    *
    * @param inputLine From user input.
    * @return Queue of tokens.

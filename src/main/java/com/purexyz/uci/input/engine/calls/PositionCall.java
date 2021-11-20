@@ -15,7 +15,6 @@ public class PositionCall extends AbstractEngineCall {
   @Override
   public EngineResult get() {
     log.info("Computing position call");
-
     return EngineResult.emptyResult();
   }
 }

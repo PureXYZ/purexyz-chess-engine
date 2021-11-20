@@ -38,7 +38,7 @@ public class InputMapper {
     tokens = normalize(tokens);
 
     if (tokens.isEmpty()) {
-      log.info("No engine call found");
+      log.warn("No engine call found");
       return Optional.empty();
     }
 
@@ -58,8 +58,9 @@ public class InputMapper {
         log.info("Reached command token: {}", currentToken);
         break;
       } else {
-        log.info("Removing unexpected user input token: {}", currentToken);
+        log.warn("Removing unexpected user input token");
         tokens.remove();
+        log.info("Consuming token: {}", currentToken);
       }
     }
 

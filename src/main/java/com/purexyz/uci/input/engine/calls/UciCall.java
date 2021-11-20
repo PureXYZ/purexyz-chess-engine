@@ -21,18 +21,16 @@ public class UciCall extends AbstractEngineCall {
   public EngineResult get() {
     log.info("Computing uci call");
 
-    StringBuilder builder = new StringBuilder();
-    builder.append("id name purexyz-chess-engine");
-    builder.append(System.lineSeparator());
-    builder.append("id author PureXYZ");
-    builder.append(System.lineSeparator());
-
     EngineState.setupEngineState();
+
+    StringBuilder builder = new StringBuilder();
+    appendWithNewLine(builder, "id name purexyz-chess-engine");
+    appendWithNewLine(builder, "id author PureXYZ");
+
     Collection<Option> options = EngineOptions.getOptions();
     if (options != null && !options.isEmpty()) {
       for (Option option : options) {
-        builder.append(option.toString());
-        builder.append(System.lineSeparator());
+        appendWithNewLine(builder, option.toString());
       }
     }
 

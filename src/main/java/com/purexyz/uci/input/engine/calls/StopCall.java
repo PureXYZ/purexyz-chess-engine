@@ -15,7 +15,6 @@ public class StopCall extends AbstractEngineCall {
   @Override
   public EngineResult get() {
     log.info("Computing stop call");
-
     return EngineResult.emptyResult();
   }
 }

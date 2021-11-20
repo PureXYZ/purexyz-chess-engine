@@ -15,7 +15,6 @@ public class UciNewGameCall extends AbstractEngineCall {
   @Override
   public EngineResult get() {
     log.info("Computing ucinewgame call");
-
     return EngineResult.emptyResult();
   }
 }

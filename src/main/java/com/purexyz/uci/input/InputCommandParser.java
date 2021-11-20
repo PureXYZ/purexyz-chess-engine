@@ -40,7 +40,6 @@ public class InputCommandParser {
     }
 
     CommandInputToken command = (CommandInputToken) inputTokens.remove();
-    log.info("Found command: {}", command);
     log.info("Consuming token: {}", command);
 
     AbstractEngineCall result = switch (command) {

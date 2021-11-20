@@ -48,7 +48,7 @@ public class InputHandler {
     Optional<AbstractEngineCall> engineCallOpt = inputMapper.map(tokens);
 
     if (engineCallOpt.isEmpty()) {
-      log.info("No command found for input");
+      log.warn("No command found for input");
       return;
     }
 

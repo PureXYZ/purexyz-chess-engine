@@ -23,6 +23,8 @@ public record EngineResult(String result) {
     if (!isEmpty()) {
       log.info("Printing result: {}", result);
       System.out.println(result);
+    } else {
+      log.warn("Engine result is empty");
     }
   }
 }

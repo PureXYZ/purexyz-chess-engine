@@ -15,7 +15,6 @@ public class RegisterCall extends AbstractEngineCall {
   @Override
   public EngineResult get() {
     log.info("Computing register call");
-
     return EngineResult.emptyResult();
   }
 }
