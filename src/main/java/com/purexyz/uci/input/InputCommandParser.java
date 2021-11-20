@@ -5,9 +5,7 @@ import com.purexyz.uci.input.engine.calls.QuitCall;
 import com.purexyz.uci.input.token.CommandInputToken;
 import com.purexyz.uci.input.token.InputToken;
 import com.purexyz.uci.input.token.InputToken.Type;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,12 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 public class InputCommandParser {
 
   private static InputCommandParser INSTANCE;
-
-  private final static Map<CommandInputToken, List<InputToken>> commandStructureMapping = new HashMap<>();
-
-  static {
-    fillCommandStructureMapping();
-  }
 
   private InputCommandParser() {}
 
@@ -41,17 +33,11 @@ public class InputCommandParser {
     }
 
     CommandInputToken command = (CommandInputToken) inputTokens.get(0);
-    List<InputToken> commandStructure = getCommandStructure(command);
-
+    inputTokens.remove(0);
     log.info("Found command: {}", command);
 
-    if (!validateStructure(inputTokens, commandStructure)) {
-      return Optional.empty();
-    }
-
     if (command == CommandInputToken.QUIT) {
-      log.info("Creating quit engine call");
-      return Optional.of(new QuitCall());
+      quit(inputTokens);
     }
 
     log.warn("No engine call found");
@@ -72,28 +58,8 @@ public class InputCommandParser {
     return true;
   }
 
-  private static boolean validateStructure(List<InputToken> inputTokens, List<InputToken> commandStructure) {
-    int inputTokensPointer = 0;
-    int commandStructurePointer = 0;
-
-    for (int i = 0; i < commandStructure.size(); i++) {
-     // TODO
-    }
-
-    return true;
+  private static AbstractEngineCall quit(List<InputToken> restInputTokens) {
+    log.info("Creating quit engine call");
+    return new QuitCall();
   }
-
-  private static List<InputToken> getCommandStructure(CommandInputToken command) {
-    if (!commandStructureMapping.containsKey(command)) {
-      log.warn("Command not found with token: {}", command);
-      return List.of();
-    }
-
-    return commandStructureMapping.get(command);
-  }
-
-  private static void fillCommandStructureMapping() {
-    commandStructureMapping.put(CommandInputToken.QUIT, List.of(CommandInputToken.QUIT));
-  }
-
 }
