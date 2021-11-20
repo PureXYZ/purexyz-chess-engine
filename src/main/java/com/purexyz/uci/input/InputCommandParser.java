@@ -35,10 +35,6 @@ public class InputCommandParser {
     log.info("Found command: {}", command);
     log.info("Consuming token: {}", command);
 
-    if (command == CommandInputToken.QUIT) {
-      return Optional.of(quit());
-    }
-
     AbstractEngineCall result = switch (command) {
       case UCI -> uci();
       case DEBUG -> null;
