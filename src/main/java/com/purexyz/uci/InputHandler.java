@@ -7,8 +7,8 @@ import com.purexyz.uci.input.InputTokenizer;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.engine.EngineResult;
 import com.purexyz.uci.input.token.InputToken;
-import java.util.List;
 import java.util.Optional;
+import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,7 +44,7 @@ public class InputHandler {
 
     log.info("Handling input: {}", input);
 
-    List<InputToken> tokens = inputTokenizer.tokenize(input);
+    Queue<InputToken> tokens = inputTokenizer.tokenize(input);
     Optional<AbstractEngineCall> engineCallOpt = inputMapper.map(tokens);
 
     if (engineCallOpt.isEmpty()) {

@@ -3,8 +3,8 @@ package com.purexyz.uci.input;
 import com.purexyz.uci.input.token.CommandInputToken;
 import com.purexyz.uci.input.token.InputToken;
 import com.purexyz.uci.input.token.UserInputToken;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Queue;
 import lombok.extern.slf4j.Slf4j;
 
 /** Creates tokens from user input string. */
@@ -33,20 +33,20 @@ public class InputTokenizer {
    * Creates a list of tokens from user input string.
    *
    * @param inputLine From user input.
-   * @return List of tokens.
+   * @return Queue of tokens.
    */
-  public List<InputToken> tokenize(String inputLine) {
+  public Queue<InputToken> tokenize(String inputLine) {
 
     log.info("Tokenizing input: {}", inputLine);
 
     if (inputLine == null || inputLine.isBlank()) {
       log.info("Input is empty input: {}", inputLine);
-      return List.of();
+      return new ArrayDeque<>();
     }
 
     inputLine = normalize(inputLine);
 
-    List<InputToken> tokens = new LinkedList<>();
+    Queue<InputToken> tokens = new ArrayDeque<>();
 
     String[] split = inputLine.split(WHITESPACE_REGEX);
     for (String word : split) {

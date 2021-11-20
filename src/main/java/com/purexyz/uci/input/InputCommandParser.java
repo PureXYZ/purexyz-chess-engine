@@ -15,10 +15,9 @@ import com.purexyz.uci.input.engine.calls.UciNewGameCall;
 import com.purexyz.uci.input.token.CommandInputToken;
 import com.purexyz.uci.input.token.InputToken;
 import com.purexyz.uci.input.token.InputToken.Type;
-import java.util.List;
 import java.util.Optional;
+import java.util.Queue;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.saxon.functions.Abs;
 
 /** Parses tokens to build engine call. */
 @Slf4j
@@ -32,7 +31,7 @@ public class InputCommandParser {
   * @param inputTokens Representing a command.
   * @return Built engine call.
   */
-  public static Optional<AbstractEngineCall> getEngineCall(List<InputToken> inputTokens) {
+  public static Optional<AbstractEngineCall> getEngineCall(Queue<InputToken> inputTokens) {
 
     log.info("Parsing tokens: {}", inputTokens);
 
@@ -40,20 +39,19 @@ public class InputCommandParser {
       return Optional.empty();
     }
 
-    CommandInputToken command = (CommandInputToken) inputTokens.get(0);
-    inputTokens.remove(0);
+    CommandInputToken command = (CommandInputToken) inputTokens.remove();
     log.info("Found command: {}", command);
     log.info("Consuming token: {}", command);
 
     AbstractEngineCall result = switch (command) {
       case UCI -> uci();
-      case DEBUG -> debug();
+      case DEBUG -> debug(inputTokens);
       case IS_READY -> isReady();
-      case SET_OPTION -> setOption();
-      case REGISTER -> register();
+      case SET_OPTION -> setOption(inputTokens);
+      case REGISTER -> register(inputTokens);
       case UCI_NEW_GAME -> uciNewGame();
-      case POSITION -> position();
-      case GO -> go();
+      case POSITION -> position(inputTokens);
+      case GO -> go(inputTokens);
       case STOP -> stop();
       case PONDER_HIT -> ponderHit();
       case QUIT -> quit();
@@ -68,13 +66,13 @@ public class InputCommandParser {
     return Optional.of(result);
   }
 
-  private static boolean validateInputTokens(List<InputToken> inputTokens) {
+  private static boolean validateInputTokens(Queue<InputToken> inputTokens) {
     if (inputTokens == null || inputTokens.isEmpty()) {
       log.warn("Tokens are empty");
       return false;
     }
 
-    if (inputTokens.get(0).getType() != Type.COMMAND) {
+    if (inputTokens.peek().getType() != Type.COMMAND) {
       log.warn("First token must be command");
       return false;
     }
@@ -92,7 +90,7 @@ public class InputCommandParser {
     return new UciCall();
   }
 
-  private static AbstractEngineCall debug() {
+  private static AbstractEngineCall debug(Queue<InputToken> rest) {
     log.info("Creating debug engine call");
     return new DebugCall();
   }
@@ -102,12 +100,12 @@ public class InputCommandParser {
     return new IsReadyCall();
   }
 
-  private static AbstractEngineCall setOption() {
+  private static AbstractEngineCall setOption(Queue<InputToken> rest) {
     log.info("Creating setoption engine call");
     return new SetOptionCall();
   }
 
-  private static AbstractEngineCall register() {
+  private static AbstractEngineCall register(Queue<InputToken> rest) {
     log.info("Creating register engine call");
     return new RegisterCall();
   }
@@ -117,12 +115,12 @@ public class InputCommandParser {
     return new UciNewGameCall();
   }
 
-  private static AbstractEngineCall position() {
+  private static AbstractEngineCall position(Queue<InputToken> rest) {
     log.info("Creating position engine call");
     return new PositionCall();
   }
 
-  private static AbstractEngineCall go() {
+  private static AbstractEngineCall go(Queue<InputToken> rest) {
     log.info("Creating go engine call");
     return new GoCall();
   }
