@@ -13,10 +13,7 @@ class AppTest {
   void main() throws Exception {
     AtomicInteger statusCode = new AtomicInteger(1);
     withTextFromSystemIn("quit")
-        .execute(
-            () -> {
-              statusCode.set(catchSystemExit(() -> App.main(null)));
-            });
+        .execute(() -> statusCode.set(catchSystemExit(() -> App.main(null))));
     assertEquals(0, statusCode.get());
   }
 }
