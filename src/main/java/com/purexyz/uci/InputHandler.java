@@ -64,7 +64,7 @@ public class InputHandler {
   private void callAsync(AbstractEngineCall engineCall) {
     CompletableFuture
         .supplyAsync(engineCall)
-        .thenAccept(engineResult -> engineResult.printResult());
+        .thenAccept(EngineResult::printResult);
   }
 
   private void callSync(AbstractEngineCall engineCall) {

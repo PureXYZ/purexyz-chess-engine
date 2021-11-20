@@ -12,7 +12,7 @@ public abstract class AbstractEngineCall implements Supplier<EngineResult> {
 
   public abstract boolean shouldCallAsync();
 
-  public abstract EngineResult compute() throws Exception;
+  public abstract EngineResult compute();
 
   @Override
   public EngineResult get() {

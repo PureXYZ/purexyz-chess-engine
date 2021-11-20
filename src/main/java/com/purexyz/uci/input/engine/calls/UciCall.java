@@ -17,13 +17,12 @@ public class UciCall extends AbstractEngineCall {
   public EngineResult compute() {
     log.info("Computing uci call");
 
-    var builder = new StringBuilder();
-    builder.append("id name purexyz-chess-engine");
-    builder.append(System.lineSeparator());
-    builder.append("id author PureXYZ");
-    builder.append(System.lineSeparator());
-    builder.append("uciok");
+    String builder = "id name purexyz-chess-engine"
+        + System.lineSeparator()
+        + "id author PureXYZ"
+        + System.lineSeparator()
+        + "uciok";
 
-    return new EngineResult(builder.toString());
+    return new EngineResult(builder);
   }
 }
