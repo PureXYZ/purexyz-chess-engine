@@ -30,18 +30,24 @@ public class InputHandler {
   }
 
   public void handleInput(String input) {
+
+    log.info("Handling input: {}", input);
+
     List<InputToken> tokens = inputTokenizer.tokenize(input);
     Optional<AbstractEngineCall> engineCallOpt = inputMapper.map(tokens);
 
     if (engineCallOpt.isEmpty()) {
+      log.info("No command found for input");
       return;
     }
 
     AbstractEngineCall engineCall = engineCallOpt.get();
 
     if (engineCall.shouldCallAsync()) {
+      log.info("Calling async call: {}", engineCall);
       callAsync(engineCall);
     } else {
+      log.info("Calling synchronous call: {}", engineCall);
       callSync(engineCall);
     }
   }

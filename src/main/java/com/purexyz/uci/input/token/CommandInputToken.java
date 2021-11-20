@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @AllArgsConstructor
 public enum CommandInputToken implements InputToken {
   UCI("uci"),
@@ -46,18 +48,21 @@ public enum CommandInputToken implements InputToken {
   private static final Map<String, CommandInputToken> inputTokenMap;
 
   static {
+    log.info("Populating inputTokenMap");
     inputTokenMap = new HashMap<>();
     Arrays.stream(values()).forEach(t -> inputTokenMap.put(t.getValue(), t));
   }
 
   public static boolean isCommand(String inputString) {
     if (inputString == null) {
+      log.info("Input string is null");
       throw new NullPointerException();
     }
 
     CommandInputToken token = inputTokenMap.get(inputString);
 
     if (token == null) {
+      log.info("Command token not found with input: {}", inputString);
       return false;
     }
 
@@ -66,12 +71,14 @@ public enum CommandInputToken implements InputToken {
 
   public static CommandInputToken of(String inputString) {
     if (inputString == null) {
+      log.info("Input string is null");
       throw new NullPointerException();
     }
 
     CommandInputToken token = inputTokenMap.get(inputString);
 
     if (token == null) {
+      log.info("Command token not found with input: {}", inputString);
       throw new IllegalArgumentException();
     }
 

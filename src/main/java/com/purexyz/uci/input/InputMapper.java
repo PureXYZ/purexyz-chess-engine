@@ -30,6 +30,7 @@ public class InputMapper {
     tokens = normalize(tokens);
 
     if (tokens.isEmpty()) {
+      log.info("No engine call found");
       return Optional.empty();
     }
 
@@ -44,6 +45,7 @@ public class InputMapper {
 
   private List<InputToken> normalize(List<InputToken> tokens) {
     if (tokens == null || tokens.isEmpty()) {
+      log.info("Token list is empty");
       return List.of();
     }
 
@@ -51,8 +53,10 @@ public class InputMapper {
       InputToken currentToken = tokens.get(0);
 
       if (Type.COMMAND == currentToken.getType()) {
+        log.info("Reached command token: {}", currentToken);
         break;
       } else {
+        log.info("Removing unexpected user input token: {}", currentToken);
         tokens.remove(currentToken);
       }
     }
