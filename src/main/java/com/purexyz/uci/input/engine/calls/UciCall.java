@@ -13,7 +13,7 @@ public class UciCall extends AbstractEngineCall {
   }
 
   @Override
-  public EngineResult compute() throws Exception {
+  public EngineResult compute() {
     log.info("Computing uci call");
 
     var builder = new StringBuilder();
