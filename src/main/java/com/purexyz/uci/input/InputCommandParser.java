@@ -2,6 +2,7 @@ package com.purexyz.uci.input;
 
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.engine.calls.QuitCall;
+import com.purexyz.uci.input.engine.calls.UciCall;
 import com.purexyz.uci.input.token.CommandInputToken;
 import com.purexyz.uci.input.token.InputToken;
 import com.purexyz.uci.input.token.InputToken.Type;
@@ -35,13 +36,33 @@ public class InputCommandParser {
     CommandInputToken command = (CommandInputToken) inputTokens.get(0);
     inputTokens.remove(0);
     log.info("Found command: {}", command);
+    log.info("Consuming token: {}", command);
 
     if (command == CommandInputToken.QUIT) {
-      quit(inputTokens);
+      return Optional.of(quit());
     }
 
-    log.warn("No engine call found");
-    return Optional.empty();
+    AbstractEngineCall result = switch(command) {
+      case UCI -> uci();
+      case DEBUG -> null;
+      case IS_READY -> null;
+      case SET_OPTION -> null;
+      case REGISTER -> null;
+      case UCI_NEW_GAME -> null;
+      case POSITION -> null;
+      case GO -> null;
+      case STOP -> null;
+      case PONDER_HIT -> null;
+      case QUIT -> quit();
+      default -> null;
+    };
+
+    if (result == null) {
+      log.warn("No engine call found");
+      return Optional.empty();
+    }
+
+    return Optional.of(result);
   }
 
   private static boolean validateInputTokens(List<InputToken> inputTokens) {
@@ -58,8 +79,13 @@ public class InputCommandParser {
     return true;
   }
 
-  private static AbstractEngineCall quit(List<InputToken> restInputTokens) {
+  private static AbstractEngineCall quit() {
     log.info("Creating quit engine call");
     return new QuitCall();
+  }
+
+  private static AbstractEngineCall uci() {
+    log.info("Creating uci engine call");
+    return new UciCall();
   }
 }
