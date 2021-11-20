@@ -1,7 +1,10 @@
 package com.purexyz.uci.input.engine.calls;
 
+import com.purexyz.engine.option.EngineOptions;
+import com.purexyz.engine.option.Option;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.engine.EngineResult;
+import java.util.Collection;
 import lombok.extern.slf4j.Slf4j;
 
 /** Uci command of uci. */
@@ -17,12 +20,22 @@ public class UciCall extends AbstractEngineCall {
   public EngineResult get() {
     log.info("Computing uci call");
 
-    String result = "id name purexyz-chess-engine"
-        + System.lineSeparator()
-        + "id author PureXYZ"
-        + System.lineSeparator()
-        + "uciok";
+    StringBuilder builder = new StringBuilder();
+    builder.append("id name purexyz-chess-engine");
+    builder.append(System.lineSeparator());
+    builder.append("id author PureXYZ");
+    builder.append(System.lineSeparator());
 
-    return new EngineResult(result);
+    Collection<Option> options = EngineOptions.getOptions();
+    if (options != null && !options.isEmpty()) {
+      for (Option option : options) {
+        builder.append(option.toString());
+        builder.append(System.lineSeparator());
+      }
+    }
+
+    builder.append("uciok");
+
+    return new EngineResult(builder.toString());
   }
 }
