@@ -14,15 +14,15 @@ public class UciCall extends AbstractEngineCall {
   }
 
   @Override
-  public EngineResult compute() {
+  public EngineResult get() {
     log.info("Computing uci call");
 
-    String builder = "id name purexyz-chess-engine"
+    String result = "id name purexyz-chess-engine"
         + System.lineSeparator()
         + "id author PureXYZ"
         + System.lineSeparator()
         + "uciok";
 
-    return new EngineResult(builder);
+    return new EngineResult(result);
   }
 }

@@ -14,7 +14,7 @@ public class QuitCall extends AbstractEngineCall {
   }
 
   @Override
-  public EngineResult compute() {
+  public EngineResult get() {
     log.info("Computing quit call");
 
     System.exit(0);
