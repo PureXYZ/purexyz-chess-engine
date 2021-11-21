@@ -83,7 +83,7 @@ public class Option {
   @Getter
   @AllArgsConstructor
   public enum SupportedOption {
-    ENABLE_ASYNC("Enable_Async", Type.CHECK, "false", null, null, null,  OptionCalls.enableAsync());
+    ENABLE_ASYNC("Enable_Async", Type.CHECK, "true", null, null, null,  OptionCalls.enableAsync());
 
     private String name;
     private Type type;

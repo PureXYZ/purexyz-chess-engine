@@ -14,7 +14,7 @@ public class UciCall extends AbstractEngineCall {
 
   @Override
   public boolean shouldCallAsync() {
-    return false;
+    return true;
   }
 
   @Override

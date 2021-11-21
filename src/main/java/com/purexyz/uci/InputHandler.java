@@ -10,6 +10,9 @@ import com.purexyz.uci.input.token.InputToken;
 import java.util.Optional;
 import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import lombok.extern.slf4j.Slf4j;
 
 /** Handles string input from stdin. */
@@ -65,11 +68,13 @@ public class InputHandler {
 
   private void callAsync(AbstractEngineCall engineCall) {
     CompletableFuture.supplyAsync(engineCall)
-        .thenAccept(EngineResult::printResult)
-        .exceptionally(
-            t -> {
-              throw new InternalEngineException(t);
-            });
+        .whenComplete((result, exception) -> {
+          if (exception != null) {
+            throw new InternalEngineException(exception);
+          } else {
+            result.printResult();
+          }
+        });
   }
 
   private void callSync(AbstractEngineCall engineCall) {
