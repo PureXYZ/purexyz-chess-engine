@@ -57,7 +57,7 @@ public class InputHandler {
 
     AbstractEngineCall engineCall = engineCallOpt.get();
 
-    if (EngineState.getEnableAsync() && engineCall.shouldCallAsync()) {
+    if (EngineState.isEnableAsync() && engineCall.shouldCallAsync()) {
       log.info("Calling async call: {}", engineCall);
       callAsync(engineCall);
     } else {

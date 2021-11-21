@@ -13,7 +13,7 @@ public class GoCall extends AbstractEngineCall {
   }
 
   @Override
-  public EngineResult get() {
+  public EngineResult compute() {
     log.info("Computing go call");
     return EngineResult.emptyResult();
   }

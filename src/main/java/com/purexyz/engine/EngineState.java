@@ -6,9 +6,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class EngineState {
+
+  private EngineState() {}
+
   @Getter
   @Setter
-  private static Boolean enableAsync = Boolean.valueOf(SupportedOption.ENABLE_ASYNC.getDefaultValue());
+  private static volatile boolean isReady = true;
+
+  @Getter
+  @Setter
+  private static boolean enableAsync = Boolean.parseBoolean(SupportedOption.ENABLE_ASYNC.getDefaultValue());
 
   public static void setupEngineState() {
     EngineOptions.getOptions().forEach(o -> o.getSetup().accept(o));

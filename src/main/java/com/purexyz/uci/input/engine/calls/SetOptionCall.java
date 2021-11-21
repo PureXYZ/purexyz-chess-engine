@@ -13,7 +13,7 @@ public class SetOptionCall extends AbstractEngineCall {
   }
 
   @Override
-  public EngineResult get() {
+  public EngineResult compute() {
     log.info("Computing setoption call");
     return EngineResult.emptyResult();
   }

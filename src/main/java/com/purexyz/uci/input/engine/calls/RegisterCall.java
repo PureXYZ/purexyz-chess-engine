@@ -13,7 +13,7 @@ public class RegisterCall extends AbstractEngineCall {
   }
 
   @Override
-  public EngineResult get() {
+  public EngineResult compute() {
     log.info("Computing register call");
     return EngineResult.emptyResult();
   }

@@ -13,7 +13,7 @@ public class DebugCall extends AbstractEngineCall {
   }
 
   @Override
-  public EngineResult get() {
+  public EngineResult compute() {
     log.info("Computing debug call");
     return EngineResult.emptyResult();
   }

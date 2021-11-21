@@ -13,7 +13,7 @@ public class PonderHitCall extends AbstractEngineCall {
   }
 
   @Override
-  public EngineResult get() {
+  public EngineResult compute() {
     log.info("Computing ponderhit call");
     return EngineResult.emptyResult();
   }

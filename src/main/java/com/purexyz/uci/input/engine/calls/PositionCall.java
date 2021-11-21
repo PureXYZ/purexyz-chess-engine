@@ -13,7 +13,7 @@ public class PositionCall extends AbstractEngineCall {
   }
 
   @Override
-  public EngineResult get() {
+  public EngineResult compute() {
     log.info("Computing position call");
     return EngineResult.emptyResult();
   }

@@ -18,7 +18,7 @@ public class UciCall extends AbstractEngineCall {
   }
 
   @Override
-  public EngineResult get() {
+  public EngineResult compute() {
     log.info("Computing uci call");
 
     EngineState.setupEngineState();
