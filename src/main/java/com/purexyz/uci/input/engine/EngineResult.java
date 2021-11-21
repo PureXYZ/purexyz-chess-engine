@@ -15,7 +15,7 @@ public record EngineResult(String result) {
    *
    * @return the engine result
    */
-public static EngineResult emptyResult() {
+  public static EngineResult emptyResult() {
     return emptyResult;
   }
 
@@ -24,14 +24,14 @@ public static EngineResult emptyResult() {
    *
    * @return the boolean
    */
-public boolean isEmpty() {
+  public boolean isEmpty() {
     return result == null || result.isBlank();
   }
 
   /**
    * Print result.
    */
-public void printResult() {
+  public void printResult() {
     if (!isEmpty()) {
       log.info("Printing result");
       System.out.println(result);

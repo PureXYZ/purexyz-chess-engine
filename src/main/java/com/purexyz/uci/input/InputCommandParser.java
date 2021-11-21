@@ -33,7 +33,7 @@ public class InputCommandParser {
    * @param inputTokens the input tokens
    * @return the engine call
    */
-public static Optional<AbstractEngineCall> getEngineCall(Queue<InputToken> inputTokens) {
+  public static Optional<AbstractEngineCall> getEngineCall(Queue<InputToken> inputTokens) {
 
     log.info("Parsing tokens: {}", inputTokens);
 
