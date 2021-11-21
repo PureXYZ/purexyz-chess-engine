@@ -13,13 +13,13 @@ public abstract class AbstractEngineCall implements Supplier<EngineResult> {
 
   public abstract boolean shouldCallAsync();
 
-  protected abstract EngineResult compute() throws Exception;
+  protected abstract EngineResult compute();
 
   @Override
   public final EngineResult get() {
 
     if (!shouldCallAsync()) {
-      return catchCompute();
+      return compute();
     }
 
     if (!EngineState.isReady()) {
@@ -27,18 +27,9 @@ public abstract class AbstractEngineCall implements Supplier<EngineResult> {
       return EngineResult.emptyResult();
     }
     EngineState.setReady(false);
-    EngineResult result = catchCompute();
+    EngineResult result = compute();
     EngineState.setReady(true);
     return result;
-  }
-
-  private EngineResult catchCompute() {
-    try {
-      return compute();
-    } catch (Exception e) {
-      log.error("Compute exception", e);
-      throw new RuntimeException(e);
-    }
   }
 
   protected static void appendWithNewLine(StringBuilder builder, String line) {

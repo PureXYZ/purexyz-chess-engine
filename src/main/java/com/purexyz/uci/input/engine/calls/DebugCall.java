@@ -21,7 +21,7 @@ public class DebugCall extends AbstractEngineCall {
   }
 
   @Override
-  public EngineResult compute() throws NoSuchFieldException, IllegalAccessException {
+  public EngineResult compute() {
     log.info("Computing debug call");
 
     if (value == null) {
