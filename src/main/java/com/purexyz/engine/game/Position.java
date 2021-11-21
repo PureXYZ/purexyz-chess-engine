@@ -16,24 +16,21 @@ public class Position {
   }
 
   public long getBitBoard(Side side, Piece piece) {
-    return bitBoards[side.getIntValue()][piece.getValue()];
+    return bitBoards[side.getValue()][piece.getValue()];
   }
 
   public long[] getBitBoards(Side side) {
-    return bitBoards[side.getIntValue()];
+    return bitBoards[side.getValue()];
   }
 
   @Getter
   @AllArgsConstructor
   enum Side {
-    WHITE(true),
-    BLACK(false);
+    WHITE(0, 1),
+    BLACK(1, 0);
 
-    private boolean value;
-
-    private int getIntValue() {
-      return value ? 0 : 1;
-    }
+    private int value;
+    private int nextValue;
 
     @Getter
     private static final int TOTAL = 2;
