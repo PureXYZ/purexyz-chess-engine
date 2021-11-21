@@ -6,6 +6,7 @@ import com.purexyz.engine.option.Option;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.engine.EngineResult;
 import java.util.Collection;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 /** The type Uci call. */

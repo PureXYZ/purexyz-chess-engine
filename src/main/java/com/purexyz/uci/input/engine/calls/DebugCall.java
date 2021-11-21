@@ -16,8 +16,8 @@ import org.slf4j.LoggerFactory;
 @AllArgsConstructor
 public class DebugCall extends AbstractEngineCall {
 
-  /** The Value. */
-  private String value;
+  /** The Debug on. */
+  private boolean debugOn;
 
   /**
    * Should call async boolean.
@@ -38,13 +38,9 @@ public class DebugCall extends AbstractEngineCall {
   public EngineResult compute() {
     log.info("Computing debug call");
 
-    if (value == null) {
-      return EngineResult.emptyResult();
-    }
-
-    if (value.equals("on")) {
+    if (debugOn) {
       changeConsoleLogging("System.out", Level.ALL);
-    } else if (value.equals("off")) {
+    } else {
       changeConsoleLogging("System.err", Level.ERROR);
     }
 

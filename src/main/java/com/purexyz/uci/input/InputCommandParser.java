@@ -127,11 +127,13 @@ public class InputCommandParser {
     }
 
     CommandInputToken command = (CommandInputToken) token;
-    if (command != CommandInputToken.DEBUG_ON && command != CommandInputToken.DEBUG_OFF) {
+    if (command == CommandInputToken.DEBUG_ON) {
+      return new DebugCall(true);
+    } else if (command == CommandInputToken.DEBUG_OFF) {
+      return new DebugCall(false);
+    } else {
       return null;
     }
-
-    return new DebugCall(command.getValue());
   }
 
   /**
