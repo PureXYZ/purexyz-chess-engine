@@ -1,15 +1,13 @@
 package com.purexyz.engine;
 
-import com.purexyz.engine.option.EngineOptions;
 import com.purexyz.engine.option.Option.SupportedOption;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /** The type Engine state. */
+@Slf4j
 public class EngineState {
-
-  /** The constant isReady. */
-  @Getter @Setter private static volatile boolean isReady = true;
 
   /** The constant enableAsync. */
   @Getter @Setter
@@ -21,6 +19,8 @@ public class EngineState {
 
   /** Sets engine state. */
   public static void setupEngineState() {
+    log.info("Setting up engine state");
     EngineOptions.getOptions().forEach(o -> o.getSetup().accept(o));
+    log.info("Engine state setup completed");
   }
 }

@@ -1,6 +1,5 @@
 package com.purexyz.uci.input.engine;
 
-import com.purexyz.engine.EngineState;
 import java.util.function.Supplier;
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,18 +49,6 @@ public abstract class AbstractEngineCall implements Supplier<EngineResult> {
    */
   @Override
   public final EngineResult get() {
-
-    if (!shouldCallAsync()) {
-      return compute();
-    }
-
-    if (!EngineState.isReady()) {
-      log.warn("Call before engine has given readyok");
-      return EngineResult.emptyResult();
-    }
-    EngineState.setReady(false);
-    EngineResult result = compute();
-    EngineState.setReady(true);
-    return result;
+    return compute();
   }
 }

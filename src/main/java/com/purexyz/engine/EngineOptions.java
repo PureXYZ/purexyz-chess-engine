@@ -1,5 +1,7 @@
-package com.purexyz.engine.option;
+package com.purexyz.engine;
 
+import com.purexyz.engine.EngineState;
+import com.purexyz.engine.option.Option;
 import com.purexyz.engine.option.Option.SupportedOption;
 import java.util.Collection;
 import java.util.HashMap;
@@ -17,6 +19,7 @@ public class EngineOptions {
     for (SupportedOption supportedOption : SupportedOption.values()) {
       optionMap.put(supportedOption, Option.buildSupportedOption(supportedOption));
     }
+    EngineState.setupEngineState();
   }
 
   /** Instantiates a new Engine options. */

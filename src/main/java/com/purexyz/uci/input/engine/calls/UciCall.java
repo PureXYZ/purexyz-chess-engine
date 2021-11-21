@@ -1,12 +1,11 @@
 package com.purexyz.uci.input.engine.calls;
 
 import com.purexyz.engine.EngineState;
-import com.purexyz.engine.option.EngineOptions;
+import com.purexyz.engine.EngineOptions;
 import com.purexyz.engine.option.Option;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.engine.EngineResult;
 import java.util.Collection;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 /** The type Uci call. */
@@ -20,7 +19,7 @@ public class UciCall extends AbstractEngineCall {
    */
   @Override
   public boolean shouldCallAsync() {
-    return true;
+    return false;
   }
 
   /**
@@ -31,8 +30,6 @@ public class UciCall extends AbstractEngineCall {
   @Override
   public EngineResult compute() {
     log.info("Computing uci call");
-
-    EngineState.setupEngineState();
 
     StringBuilder builder = new StringBuilder();
     appendWithNewLine(builder, "id name purexyz-chess-engine");
