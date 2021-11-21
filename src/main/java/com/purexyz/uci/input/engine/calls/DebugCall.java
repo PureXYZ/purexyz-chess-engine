@@ -1,13 +1,13 @@
 package com.purexyz.uci.input.engine.calls;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.ConsoleAppender;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.engine.EngineResult;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.impl.SimpleLogger;
-import org.slf4j.impl.SimpleLoggerConfiguration;
+import org.slf4j.LoggerFactory;
 
 @Slf4j
 @AllArgsConstructor
@@ -28,16 +28,24 @@ public class DebugCall extends AbstractEngineCall {
       return EngineResult.emptyResult();
     }
 
-    value = normalizeString(value);
-
     if (value.equals("on")) {
-      // TODO
-      return EngineResult.emptyResult();
+      changeConsoleLogging("System.out");
     } else if (value.equals("off")) {
-      // TODO
-      return EngineResult.emptyResult();
-    } else {
-      return EngineResult.emptyResult();
+      changeConsoleLogging("System.err");
     }
+
+    return EngineResult.emptyResult();
+  }
+
+  /**
+   * Depends on logback-classic and logback.xml.
+   *
+   * @param target System.out or System.err. */
+  private void changeConsoleLogging(String target) {
+    LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+    ConsoleAppender<ILoggingEvent> appender =
+        (ConsoleAppender<ILoggingEvent>) lc.getLogger("com.purexyz").getAppender("CONSOLE");
+    appender.setTarget(target);
+    appender.start();
   }
 }

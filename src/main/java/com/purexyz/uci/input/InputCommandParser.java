@@ -95,11 +95,16 @@ public class InputCommandParser {
     InputToken token = rest.remove();
     log.info("Consuming token: {}", token);
 
-    if (token.getType() != Type.INPUT) {
+    if (token.getType() != Type.COMMAND) {
       return null;
     }
 
-    return new DebugCall(token.getValue());
+    CommandInputToken command = (CommandInputToken) token;
+    if (command != CommandInputToken.DEBUG_ON && command != CommandInputToken.DEBUG_OFF) {
+      return null;
+    }
+
+    return new DebugCall(command.getValue());
   }
 
   private static AbstractEngineCall isReady() {
