@@ -18,18 +18,18 @@ public abstract class AbstractEngineCall implements Supplier<EngineResult> {
   @Override
   public final EngineResult get() {
 
-    if (shouldCallAsync()) {
-      if (!EngineState.isReady()) {
-        log.error("Call before engine has given readyok");
-        return EngineResult.emptyResult();
-      }
-      EngineState.setReady(false);
-      EngineResult result = compute();
-      EngineState.setReady(true);
-      return result;
+    if (!shouldCallAsync()) {
+      return compute();
     }
 
-    return compute();
+    if (!EngineState.isReady()) {
+      log.error("Call before engine has given readyok");
+      return EngineResult.emptyResult();
+    }
+    EngineState.setReady(false);
+    EngineResult result = compute();
+    EngineState.setReady(true);
+    return result;
   }
 
   protected static void appendWithNewLine(StringBuilder builder, String line) {
