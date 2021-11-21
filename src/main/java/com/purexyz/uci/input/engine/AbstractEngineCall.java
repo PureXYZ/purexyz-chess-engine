@@ -23,7 +23,7 @@ public abstract class AbstractEngineCall implements Supplier<EngineResult> {
     }
 
     if (!EngineState.isReady()) {
-      log.error("Call before engine has given readyok");
+      log.warn("Call before engine has given readyok");
       return EngineResult.emptyResult();
     }
     EngineState.setReady(false);

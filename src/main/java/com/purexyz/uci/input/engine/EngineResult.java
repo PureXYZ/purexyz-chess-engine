@@ -21,7 +21,7 @@ public record EngineResult(String result) {
   */
   public void printResult() {
     if (!isEmpty()) {
-      log.info("Printing result: {}", result);
+      log.info("Printing result");
       System.out.println(result);
     } else {
       log.warn("Engine result is empty");

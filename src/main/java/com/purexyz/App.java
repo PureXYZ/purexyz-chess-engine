@@ -16,7 +16,7 @@ public class App {
    *
    * @param args Program arguments. */
   public static void main(String[] args) {
-    log.info("Starting application");
+    printArt();
 
     Scanner scanner = new Scanner(System.in);
 
@@ -25,5 +25,18 @@ public class App {
       log.info("Received input: {}", input);
       inputHandler.handleInput(input);
     }
+  }
+
+  private static void printArt() {
+    log.info("Starting purexyz-chess-engine by PureXYZ");
+    log.info("");
+    log.info("   |\\_");
+    log.info("  /  .\\_");
+    log.info(" |   ___)");
+    log.info(" |    \\");
+    log.info(" |  =  |");
+    log.info(" /_____\\");
+    log.info("[_______]");
+    log.info("");
   }
 }
