@@ -1,5 +1,7 @@
 package com.purexyz.uci.input.engine.calls;
 
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.ConsoleAppender;
@@ -41,9 +43,9 @@ public class DebugCall extends AbstractEngineCall {
     }
 
     if (value.equals("on")) {
-      changeConsoleLogging("System.out");
+      changeConsoleLogging(true);
     } else if (value.equals("off")) {
-      changeConsoleLogging("System.err");
+      changeConsoleLogging(false);
     }
 
     return EngineResult.emptyResult();
@@ -52,12 +54,27 @@ public class DebugCall extends AbstractEngineCall {
   /**
    * Change console logging.
    *
-   * @param target the target
+   * @param moreInfo the more info
    */
-  private void changeConsoleLogging(String target) {
-    LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+private void changeConsoleLogging(boolean moreInfo) {
+
+    String target;
+    Level level;
+
+    if (moreInfo) {
+      target = "System.out";
+      level = Level.ALL;
+    } else {
+      target = "System.err";
+      level = Level.ERROR;
+    }
+
+    LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
+    Logger logger = context.getLogger("com.purexyz");
+    logger.setLevel(level);
+
     ConsoleAppender<ILoggingEvent> appender =
-        (ConsoleAppender<ILoggingEvent>) lc.getLogger("com.purexyz").getAppender("CONSOLE");
+        (ConsoleAppender<ILoggingEvent>) logger.getAppender("CONSOLE");
     appender.setTarget(target);
     appender.start();
   }
