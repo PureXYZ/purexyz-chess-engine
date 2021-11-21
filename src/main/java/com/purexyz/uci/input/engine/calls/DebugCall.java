@@ -43,9 +43,9 @@ public class DebugCall extends AbstractEngineCall {
     }
 
     if (value.equals("on")) {
-      changeConsoleLogging(true);
+      changeConsoleLogging("System.out", Level.ALL);
     } else if (value.equals("off")) {
-      changeConsoleLogging(false);
+      changeConsoleLogging("System.err", Level.ERROR);
     }
 
     return EngineResult.emptyResult();
@@ -54,20 +54,10 @@ public class DebugCall extends AbstractEngineCall {
   /**
    * Change console logging.
    *
-   * @param moreInfo the more info
+   * @param target the target
+   * @param level the level
    */
-private void changeConsoleLogging(boolean moreInfo) {
-
-    String target;
-    Level level;
-
-    if (moreInfo) {
-      target = "System.out";
-      level = Level.ALL;
-    } else {
-      target = "System.err";
-      level = Level.ERROR;
-    }
+  private void changeConsoleLogging(String target, Level level) {
 
     LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
     Logger logger = context.getLogger("com.purexyz");
