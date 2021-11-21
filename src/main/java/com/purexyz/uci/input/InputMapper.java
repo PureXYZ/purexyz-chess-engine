@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.Queue;
 import lombok.extern.slf4j.Slf4j;
 
-/** Maps input tokens to AbstractEngineCall. */
+/** The type Input mapper. */
 @Slf4j
 public class InputMapper {
 
@@ -17,9 +17,10 @@ public class InputMapper {
   private InputMapper() {}
 
   /**
-   * Singleton.
+   * Gets instance.
    *
-   * @return Get InputMapper instance. */
+   * @return the instance
+   */
   public static InputMapper getInstance() {
     if (instance == null) {
       instance = new InputMapper();
@@ -29,10 +30,10 @@ public class InputMapper {
   }
 
   /**
-   * Maps input tokens to engine call.
+   * Map optional.
    *
-   * @param tokens from input.
-   * @return AbstractEngineCall if successfully maps input to command.
+   * @param tokens the tokens
+   * @return the optional
    */
   public Optional<AbstractEngineCall> map(Queue<InputToken> tokens) {
     tokens = normalize(tokens);

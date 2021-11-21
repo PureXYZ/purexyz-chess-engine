@@ -10,12 +10,9 @@ import com.purexyz.uci.input.token.InputToken;
 import java.util.Optional;
 import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import lombok.extern.slf4j.Slf4j;
 
-/** Handles string input from stdin. */
+/** The type Input handler. */
 @Slf4j
 public class InputHandler {
 
@@ -27,9 +24,10 @@ public class InputHandler {
   private InputHandler() {}
 
   /**
-   * Singleton.
+   * Gets instance.
    *
-   * @return Get instance. */
+   * @return the instance
+   */
   public static InputHandler getInstance() {
     if (instance == null) {
       instance = new InputHandler();
@@ -39,10 +37,10 @@ public class InputHandler {
   }
 
   /**
-   * Handles input from stdin.
-   * Makes call to engine and prints result.
+   * Handle input.
    *
-   * @param input User input from stdin. */
+   * @param input the input
+   */
   public void handleInput(String input) {
 
     log.info("Handling input: {}", input);
@@ -68,13 +66,14 @@ public class InputHandler {
 
   private void callAsync(AbstractEngineCall engineCall) {
     CompletableFuture.supplyAsync(engineCall)
-        .whenComplete((result, exception) -> {
-          if (exception != null) {
-            throw new InternalEngineException(exception);
-          } else {
-            result.printResult();
-          }
-        });
+        .whenComplete(
+            (result, exception) -> {
+              if (exception != null) {
+                throw new InternalEngineException(exception);
+              } else {
+                result.printResult();
+              }
+            });
   }
 
   private void callSync(AbstractEngineCall engineCall) {

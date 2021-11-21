@@ -19,19 +19,21 @@ import java.util.Optional;
 import java.util.Queue;
 import lombok.extern.slf4j.Slf4j;
 
-/** Parses tokens to build engine call. */
+/**
+ * The type Input command parser.
+ */
 @Slf4j
 public class InputCommandParser {
 
   private InputCommandParser() {}
 
   /**
-  * Gets specific engine call for tokenized command.
-  *
-  * @param inputTokens Representing a command.
-  * @return Built engine call.
-  */
-  public static Optional<AbstractEngineCall> getEngineCall(Queue<InputToken> inputTokens) {
+   * Gets engine call.
+   *
+   * @param inputTokens the input tokens
+   * @return the engine call
+   */
+public static Optional<AbstractEngineCall> getEngineCall(Queue<InputToken> inputTokens) {
 
     log.info("Parsing tokens: {}", inputTokens);
 

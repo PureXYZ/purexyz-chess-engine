@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import lombok.extern.slf4j.Slf4j;
 
-/** Creates tokens from user input string. */
+/** The type Input tokenizer. */
 @Slf4j
 public class InputTokenizer {
 
@@ -18,9 +18,10 @@ public class InputTokenizer {
   private InputTokenizer() {}
 
   /**
-   * Singleton.
+   * Gets instance.
    *
-   * @return Gets instance. */
+   * @return the instance
+   */
   public static InputTokenizer getInstance() {
     if (instance == null) {
       instance = new InputTokenizer();
@@ -30,10 +31,10 @@ public class InputTokenizer {
   }
 
   /**
-   * Creates a queue of tokens from user input string.
+   * Tokenize queue.
    *
-   * @param inputLine From user input.
-   * @return Queue of tokens.
+   * @param inputLine the input line
+   * @return the queue
    */
   public Queue<InputToken> tokenize(String inputLine) {
 

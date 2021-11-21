@@ -9,17 +9,28 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 
+/** The type Debug call. */
 @Slf4j
 @AllArgsConstructor
 public class DebugCall extends AbstractEngineCall {
 
   private String value;
 
+  /**
+   * Should call async boolean.
+   *
+   * @return the boolean
+   */
   @Override
   public boolean shouldCallAsync() {
     return false;
   }
 
+  /**
+   * Compute engine result.
+   *
+   * @return the engine result
+   */
   @Override
   public EngineResult compute() {
     log.info("Computing debug call");
@@ -40,7 +51,8 @@ public class DebugCall extends AbstractEngineCall {
   /**
    * Depends on logback-classic and logback.xml.
    *
-   * @param target System.out or System.err. */
+   * @param target System.out or System.err.
+   */
   private void changeConsoleLogging(String target) {
     LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
     ConsoleAppender<ILoggingEvent> appender =

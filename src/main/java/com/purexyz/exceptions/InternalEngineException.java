@@ -2,16 +2,15 @@ package com.purexyz.exceptions;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Exception thrown by chess engine.
- * Unrecoverable errors must exit. */
+/** The type Internal engine exception. */
 @Slf4j
 public class InternalEngineException extends RuntimeException {
 
   /**
-   * InternalEngineException.
+   * Instantiates a new Internal engine exception.
    *
-   * @param e Exception.*/
+   * @param e the e
+   */
   public InternalEngineException(Throwable e) {
     super(e);
     log.error("InternalEngineException thrown, Throwable: {}", e, this);
@@ -19,15 +18,17 @@ public class InternalEngineException extends RuntimeException {
   }
 
   /**
-   * InternalEngineException.
+   * Instantiates a new Internal engine exception.
    *
-   * @param message String message. */
+   * @param message the message
+   */
   public InternalEngineException(String message) {
     super(message);
     log.error(message, this);
     exit();
   }
 
+  /** Instantiates a new Internal engine exception. */
   public InternalEngineException() {
     log.error("InternalEngineException thrown", this);
     exit();

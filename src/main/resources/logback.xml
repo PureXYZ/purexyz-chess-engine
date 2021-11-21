@@ -7,6 +7,6 @@
   </appender>
 
   <logger name="com.purexyz">
-    <appender-ref ref="CONSOLE" />
+    <appender-ref ref="CONSOLE"/>
   </logger>
 </configuration>
