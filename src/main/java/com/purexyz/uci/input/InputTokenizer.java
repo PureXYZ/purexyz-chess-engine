@@ -13,6 +13,7 @@ public class InputTokenizer {
 
   /** The constant WHITESPACE_REGEX. */
   private static final String WHITESPACE_REGEX = "\\s+";
+
   /** The constant instance. */
   private static InputTokenizer instance;
 
