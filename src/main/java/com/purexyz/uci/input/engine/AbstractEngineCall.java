@@ -1,7 +1,6 @@
 package com.purexyz.uci.input.engine;
 
 import com.purexyz.engine.EngineState;
-import com.purexyz.exceptions.InternalEngineException;
 import java.util.function.Supplier;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +20,8 @@ public abstract class AbstractEngineCall implements Supplier<EngineResult> {
 
     if (shouldCallAsync()) {
       if (!EngineState.isReady()) {
-        throw new InternalEngineException("Call before engine has given readyok");
+        log.error("Call before engine has given readyok");
+        return EngineResult.emptyResult();
       }
       EngineState.setReady(false);
       EngineResult result = compute();
