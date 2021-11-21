@@ -1,6 +1,5 @@
 package com.purexyz.uci.input.engine.calls;
 
-import com.purexyz.engine.EngineState;
 import com.purexyz.engine.EngineOptions;
 import com.purexyz.engine.option.Option;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
