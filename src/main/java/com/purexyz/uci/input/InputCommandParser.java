@@ -91,7 +91,15 @@ public class InputCommandParser {
 
   private static AbstractEngineCall debug(Queue<InputToken> rest) {
     log.info("Creating debug engine call");
-    return new DebugCall();
+
+    InputToken token = rest.remove();
+    log.info("Consuming token: {}", token);
+
+    if (token.getType() != Type.INPUT) {
+      return null;
+    }
+
+    return new DebugCall(token.getValue());
   }
 
   private static AbstractEngineCall isReady() {
