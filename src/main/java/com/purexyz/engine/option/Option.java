@@ -7,42 +7,27 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-/** The type Option. */
 @Getter
 @Setter
 @Builder
 public class Option {
 
-  /** The Name. */
   private String name;
 
-  /** The Type. */
   private Type type;
 
-  /** The Default value. */
   private String defaultValue;
 
-  /** The Min. */
   private Integer min;
 
-  /** The Max. */
   private Integer max;
 
-  /** The Vars. */
   private List<String> vars;
 
-  /** The Current value. */
   private String currentValue;
 
-  /** The Setup. */
   private Consumer<Option> setup;
 
-  /**
-   * Build supported option option.
-   *
-   * @param supportedOption the supported option
-   * @return the option
-   */
   public static Option buildSupportedOption(SupportedOption supportedOption) {
     return builder()
         .name(supportedOption.getName())
@@ -56,11 +41,6 @@ public class Option {
         .build();
   }
 
-  /**
-   * To string string.
-   *
-   * @return the string
-   */
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
@@ -95,51 +75,35 @@ public class Option {
     return builder.toString();
   }
 
-  /** The enum Type. */
   @Getter
   @AllArgsConstructor
   public enum Type {
-    /** Check type. */
     CHECK("check"),
-    /** Spin type. */
     SPIN("spin"),
-    /** Combo type. */
     COMBO("combo"),
-    /** Button type. */
     BUTTON("button"),
-    /** String type. */
     STRING("string");
 
-    /** The Value. */
     private String value;
   }
 
-  /** The enum Supported option. */
   @Getter
   @AllArgsConstructor
   public enum SupportedOption {
-    /** Enable async supported option. */
     ENABLE_ASYNC("Enable_Async", Type.CHECK, "true", null, null, null, OptionCalls.enableAsync());
 
-    /** The Name. */
     private String name;
 
-    /** The Type. */
     private Type type;
 
-    /** The Default value. */
     private String defaultValue;
 
-    /** The Min. */
     private Integer min;
 
-    /** The Max. */
     private Integer max;
 
-    /** The Vars. */
     private List<String> vars;
 
-    /** The Setup. */
     private Consumer<Option> setup;
   }
 }

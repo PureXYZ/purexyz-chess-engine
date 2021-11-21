@@ -7,24 +7,15 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import lombok.extern.slf4j.Slf4j;
 
-/** The type Input tokenizer. */
 @Slf4j
 public class InputTokenizer {
 
-  /** The constant WHITESPACE_REGEX. */
   private static final String WHITESPACE_REGEX = "\\s+";
 
-  /** The constant instance. */
   private static InputTokenizer instance;
 
-  /** Instantiates a new Input tokenizer. */
   private InputTokenizer() {}
 
-  /**
-   * Gets instance.
-   *
-   * @return the instance
-   */
   public static InputTokenizer getInstance() {
     if (instance == null) {
       instance = new InputTokenizer();
@@ -33,12 +24,6 @@ public class InputTokenizer {
     return instance;
   }
 
-  /**
-   * Tokenize queue.
-   *
-   * @param inputLine the input line
-   * @return the queue
-   */
   public Queue<InputToken> tokenize(String inputLine) {
 
     log.info("Tokenizing input: {}", inputLine);
@@ -66,12 +51,6 @@ public class InputTokenizer {
     return tokens;
   }
 
-  /**
-   * Normalize string.
-   *
-   * @param string the string
-   * @return the string
-   */
   private String normalize(String string) {
     return string.strip();
   }

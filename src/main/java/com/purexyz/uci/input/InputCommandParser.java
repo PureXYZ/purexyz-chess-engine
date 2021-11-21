@@ -19,23 +19,11 @@ import java.util.Optional;
 import java.util.Queue;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * The type Input command parser.
- */
 @Slf4j
 public class InputCommandParser {
 
-  /**
-   * Instantiates a new Input command parser.
-   */
   private InputCommandParser() {}
 
-  /**
-   * Gets engine call.
-   *
-   * @param inputTokens the input tokens
-   * @return the engine call
-   */
   public static Optional<AbstractEngineCall> getEngineCall(Queue<InputToken> inputTokens) {
 
     log.info("Parsing tokens: {}", inputTokens);
@@ -70,12 +58,6 @@ public class InputCommandParser {
     return Optional.of(result);
   }
 
-  /**
-   * Validate input tokens boolean.
-   *
-   * @param inputTokens the input tokens
-   * @return the boolean
-   */
   private static boolean validateInputTokens(Queue<InputToken> inputTokens) {
     if (inputTokens == null || inputTokens.isEmpty()) {
       log.warn("Tokens are empty");
@@ -90,32 +72,16 @@ public class InputCommandParser {
     return true;
   }
 
-  /**
-   * Quit abstract engine call.
-   *
-   * @return the abstract engine call
-   */
   private static AbstractEngineCall quit() {
     log.info("Creating quit engine call");
     return new QuitCall();
   }
 
-  /**
-   * Uci abstract engine call.
-   *
-   * @return the abstract engine call
-   */
   private static AbstractEngineCall uci() {
     log.info("Creating uci engine call");
     return new UciCall();
   }
 
-  /**
-   * Debug abstract engine call.
-   *
-   * @param rest the rest
-   * @return the abstract engine call
-   */
   private static AbstractEngineCall debug(Queue<InputToken> rest) {
     log.info("Creating debug engine call");
 
@@ -136,85 +102,41 @@ public class InputCommandParser {
     }
   }
 
-  /**
-   * Is ready abstract engine call.
-   *
-   * @return the abstract engine call
-   */
   private static AbstractEngineCall isReady() {
     log.info("Creating isready engine call");
     return new IsReadyCall();
   }
 
-  /**
-   * Sets option.
-   *
-   * @param rest the rest
-   * @return the option
-   */
   private static AbstractEngineCall setOption(Queue<InputToken> rest) {
     log.info("Creating setoption engine call");
     return new SetOptionCall();
   }
 
-  /**
-   * Register abstract engine call.
-   *
-   * @param rest the rest
-   * @return the abstract engine call
-   */
   private static AbstractEngineCall register(Queue<InputToken> rest) {
     log.info("Creating register engine call");
     return new RegisterCall();
   }
 
-  /**
-   * Uci new game abstract engine call.
-   *
-   * @return the abstract engine call
-   */
   private static AbstractEngineCall uciNewGame() {
     log.info("Creating ucinewgame engine call");
     return new UciNewGameCall();
   }
 
-  /**
-   * Position abstract engine call.
-   *
-   * @param rest the rest
-   * @return the abstract engine call
-   */
   private static AbstractEngineCall position(Queue<InputToken> rest) {
     log.info("Creating position engine call");
     return new PositionCall();
   }
 
-  /**
-   * Go abstract engine call.
-   *
-   * @param rest the rest
-   * @return the abstract engine call
-   */
   private static AbstractEngineCall go(Queue<InputToken> rest) {
     log.info("Creating go engine call");
     return new GoCall();
   }
 
-  /**
-   * Stop abstract engine call.
-   *
-   * @return the abstract engine call
-   */
   private static AbstractEngineCall stop() {
     log.info("Creating stop engine call");
     return new StopCall();
   }
 
-  /**
-   * Ponder hit abstract engine call.
-   *
-   * @return the abstract engine call
-   */
   private static AbstractEngineCall ponderHit() {
     log.info("Creating ponderhit engine call");
     return new PonderHitCall();

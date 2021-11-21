@@ -12,27 +12,17 @@ import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
 import lombok.extern.slf4j.Slf4j;
 
-/** The type Input handler. */
 @Slf4j
 public class InputHandler {
 
-  /** The constant inputTokenizer. */
   private static final InputTokenizer inputTokenizer = InputTokenizer.getInstance();
 
-  /** The constant inputMapper. */
   private static final InputMapper inputMapper = InputMapper.getInstance();
 
-  /** The constant instance. */
   private static InputHandler instance;
 
-  /** Instantiates a new Input handler. */
   private InputHandler() {}
 
-  /**
-   * Gets instance.
-   *
-   * @return the instance
-   */
   public static InputHandler getInstance() {
     if (instance == null) {
       instance = new InputHandler();
@@ -41,11 +31,6 @@ public class InputHandler {
     return instance;
   }
 
-  /**
-   * Handle input.
-   *
-   * @param input the input
-   */
   public void handleInput(String input) {
 
     log.info("Handling input: {}", input);
@@ -69,11 +54,6 @@ public class InputHandler {
     }
   }
 
-  /**
-   * Call async.
-   *
-   * @param engineCall the engine call
-   */
   private void callAsync(AbstractEngineCall engineCall) {
     CompletableFuture.supplyAsync(engineCall)
         .whenComplete(
@@ -86,11 +66,6 @@ public class InputHandler {
             });
   }
 
-  /**
-   * Call sync.
-   *
-   * @param engineCall the engine call
-   */
   private void callSync(AbstractEngineCall engineCall) {
     EngineResult engineResult = engineCall.get();
     engineResult.printResult();

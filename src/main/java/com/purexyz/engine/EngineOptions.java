@@ -8,11 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
-/** The type Engine options. */
 @Slf4j
 public class EngineOptions {
 
-  /** The constant optionMap. */
   private static final Map<SupportedOption, Option> optionMap = new HashMap<>();
 
   static {
@@ -22,14 +20,8 @@ public class EngineOptions {
     EngineState.setupEngineState();
   }
 
-  /** Instantiates a new Engine options. */
   private EngineOptions() {}
 
-  /**
-   * Gets options.
-   *
-   * @return the options
-   */
   public static Collection<Option> getOptions() {
     return optionMap.values();
   }

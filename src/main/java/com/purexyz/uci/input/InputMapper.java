@@ -8,21 +8,13 @@ import java.util.Optional;
 import java.util.Queue;
 import lombok.extern.slf4j.Slf4j;
 
-/** The type Input mapper. */
 @Slf4j
 public class InputMapper {
 
-  /** The constant instance. */
   private static InputMapper instance;
 
-  /** Instantiates a new Input mapper. */
   private InputMapper() {}
 
-  /**
-   * Gets instance.
-   *
-   * @return the instance
-   */
   public static InputMapper getInstance() {
     if (instance == null) {
       instance = new InputMapper();
@@ -31,12 +23,6 @@ public class InputMapper {
     return instance;
   }
 
-  /**
-   * Map optional.
-   *
-   * @param tokens the tokens
-   * @return the optional
-   */
   public Optional<AbstractEngineCall> map(Queue<InputToken> tokens) {
     tokens = normalize(tokens);
 
@@ -48,12 +34,6 @@ public class InputMapper {
     return InputCommandParser.getEngineCall(tokens);
   }
 
-  /**
-   * Normalize queue.
-   *
-   * @param tokens the tokens
-   * @return the queue
-   */
   private Queue<InputToken> normalize(Queue<InputToken> tokens) {
     if (tokens == null || tokens.isEmpty()) {
       log.info("Token list is empty");
