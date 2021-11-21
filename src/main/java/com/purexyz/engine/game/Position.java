@@ -1,6 +1,5 @@
 package com.purexyz.engine.game;
 
-import com.purexyz.engine.game.bitboard.BitBoard;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -8,24 +7,33 @@ public class Position {
 
   private Position() {}
 
-  private BitBoard[][] boards = new BitBoard[Side.getTOTAL()][Piece.getTOTAL()];
+  private final long[][] bitBoards = new long[Side.getTOTAL()][Piece.getTOTAL()];
 
   public Position defaultPosition() {
     Position position = new Position();
+    // TODO setup defaults
     return position;
   }
 
-  public BitBoard getBitBoard(Side side, Piece piece) {
-    return boards[side.getValue()][piece.getValue()];
+  public long getBitBoard(Side side, Piece piece) {
+    return bitBoards[side.getIntValue()][piece.getValue()];
+  }
+
+  public long[] getBitBoards(Side side) {
+    return bitBoards[side.getIntValue()];
   }
 
   @Getter
   @AllArgsConstructor
   enum Side {
-    WHITE(0),
-    BLACK(1);
+    WHITE(true),
+    BLACK(false);
 
-    private int value;
+    private boolean value;
+
+    private int getIntValue() {
+      return value ? 0 : 1;
+    }
 
     @Getter
     private static final int TOTAL = 2;

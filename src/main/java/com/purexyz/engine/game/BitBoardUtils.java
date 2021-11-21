@@ -1,4 +1,4 @@
-package com.purexyz.engine.game.bitboard;
+package com.purexyz.engine.game;
 
 public class BitBoardUtils {
 
