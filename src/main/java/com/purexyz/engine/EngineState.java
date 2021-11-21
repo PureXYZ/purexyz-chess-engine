@@ -10,6 +10,7 @@ public class EngineState {
 
   /** The constant isReady. */
   @Getter @Setter private static volatile boolean isReady = true;
+
   /** The constant enableAsync. */
   @Getter @Setter
   private static boolean enableAsync =

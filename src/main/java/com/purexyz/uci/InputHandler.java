@@ -18,8 +18,10 @@ public class InputHandler {
 
   /** The constant inputTokenizer. */
   private static final InputTokenizer inputTokenizer = InputTokenizer.getInstance();
+
   /** The constant inputMapper. */
   private static final InputMapper inputMapper = InputMapper.getInstance();
+
   /** The constant instance. */
   private static InputHandler instance;
 
