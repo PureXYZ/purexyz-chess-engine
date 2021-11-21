@@ -8,9 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EngineState {
 
-  @Getter @Setter
-  private static boolean enableAsync =
-      Boolean.parseBoolean(SupportedOption.ENABLE_ASYNC.getDefaultValue());
+  @Getter
+  @Setter
+  private static boolean enableAsync = Boolean.parseBoolean(SupportedOption.ENABLE_ASYNC.getDefaultValue());
 
   private EngineState() {}
 

@@ -41,8 +41,7 @@ public class DebugCall extends AbstractEngineCall {
     Logger logger = context.getLogger("com.purexyz");
     logger.setLevel(level);
 
-    ConsoleAppender<ILoggingEvent> appender =
-        (ConsoleAppender<ILoggingEvent>) logger.getAppender("CONSOLE");
+    ConsoleAppender<ILoggingEvent> appender = (ConsoleAppender<ILoggingEvent>) logger.getAppender("CONSOLE");
     appender.setTarget(target);
     appender.start();
   }

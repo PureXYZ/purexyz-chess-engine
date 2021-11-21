@@ -13,19 +13,12 @@ import lombok.Setter;
 public class Option {
 
   private String name;
-
   private Type type;
-
   private String defaultValue;
-
   private Integer min;
-
   private Integer max;
-
   private List<String> vars;
-
   private String currentValue;
-
   private Consumer<Option> setup;
 
   public static Option buildSupportedOption(SupportedOption supportedOption) {
@@ -93,17 +86,11 @@ public class Option {
     ENABLE_ASYNC("Enable_Async", Type.CHECK, "true", null, null, null, OptionCalls.enableAsync());
 
     private String name;
-
     private Type type;
-
     private String defaultValue;
-
     private Integer min;
-
     private Integer max;
-
     private List<String> vars;
-
     private Consumer<Option> setup;
   }
 }

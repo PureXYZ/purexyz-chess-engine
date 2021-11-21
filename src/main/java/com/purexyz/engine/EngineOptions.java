@@ -1,6 +1,5 @@
 package com.purexyz.engine;
 
-import com.purexyz.engine.EngineState;
 import com.purexyz.engine.option.Option;
 import com.purexyz.engine.option.Option.SupportedOption;
 import java.util.Collection;
