@@ -8,6 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public record EngineResult(String result) {
 
+  /**
+   * The constant emptyResult.
+   */
   private static final EngineResult emptyResult = new EngineResult(null);
 
   /**

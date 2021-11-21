@@ -12,8 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class InputMapper {
 
+  /** The constant instance. */
   private static InputMapper instance;
 
+  /** Instantiates a new Input mapper. */
   private InputMapper() {}
 
   /**
@@ -46,6 +48,12 @@ public class InputMapper {
     return InputCommandParser.getEngineCall(tokens);
   }
 
+  /**
+   * Normalize queue.
+   *
+   * @param tokens the tokens
+   * @return the queue
+   */
   private Queue<InputToken> normalize(Queue<InputToken> tokens) {
     if (tokens == null || tokens.isEmpty()) {
       log.info("Token list is empty");

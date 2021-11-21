@@ -10,8 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EngineOptions {
 
-  private EngineOptions() {}
-
+  /** The constant optionMap. */
   private static final Map<SupportedOption, Option> optionMap = new HashMap<>();
 
   static {
@@ -19,6 +18,9 @@ public class EngineOptions {
       optionMap.put(supportedOption, Option.buildSupportedOption(supportedOption));
     }
   }
+
+  /** Instantiates a new Engine options. */
+  private EngineOptions() {}
 
   /**
    * Gets options.

@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 /** The type Option calls. */
 public class OptionCalls {
 
+  /** Instantiates a new Option calls. */
   private OptionCalls() {}
 
   /**

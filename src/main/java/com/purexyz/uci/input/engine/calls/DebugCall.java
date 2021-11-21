@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 @AllArgsConstructor
 public class DebugCall extends AbstractEngineCall {
 
+  /** The Value. */
   private String value;
 
   /**
@@ -49,9 +50,9 @@ public class DebugCall extends AbstractEngineCall {
   }
 
   /**
-   * Depends on logback-classic and logback.xml.
+   * Change console logging.
    *
-   * @param target System.out or System.err.
+   * @param target the target
    */
   private void changeConsoleLogging(String target) {
     LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();

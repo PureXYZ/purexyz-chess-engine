@@ -11,10 +11,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class InputTokenizer {
 
+  /** The constant WHITESPACE_REGEX. */
+  private static final String WHITESPACE_REGEX = "\\s+";
+  /** The constant instance. */
   private static InputTokenizer instance;
 
-  private static final String WHITESPACE_REGEX = "\\s+";
-
+  /** Instantiates a new Input tokenizer. */
   private InputTokenizer() {}
 
   /**
@@ -63,6 +65,12 @@ public class InputTokenizer {
     return tokens;
   }
 
+  /**
+   * Normalize string.
+   *
+   * @param string the string
+   * @return the string
+   */
   private String normalize(String string) {
     return string.strip();
   }

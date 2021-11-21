@@ -16,11 +16,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class InputHandler {
 
+  /** The constant inputTokenizer. */
+  private static final InputTokenizer inputTokenizer = InputTokenizer.getInstance();
+  /** The constant inputMapper. */
+  private static final InputMapper inputMapper = InputMapper.getInstance();
+  /** The constant instance. */
   private static InputHandler instance;
 
-  private static final InputTokenizer inputTokenizer = InputTokenizer.getInstance();
-  private static final InputMapper inputMapper = InputMapper.getInstance();
-
+  /** Instantiates a new Input handler. */
   private InputHandler() {}
 
   /**
@@ -64,6 +67,11 @@ public class InputHandler {
     }
   }
 
+  /**
+   * Call async.
+   *
+   * @param engineCall the engine call
+   */
   private void callAsync(AbstractEngineCall engineCall) {
     CompletableFuture.supplyAsync(engineCall)
         .whenComplete(
@@ -76,6 +84,11 @@ public class InputHandler {
             });
   }
 
+  /**
+   * Call sync.
+   *
+   * @param engineCall the engine call
+   */
   private void callSync(AbstractEngineCall engineCall) {
     EngineResult engineResult = engineCall.get();
     engineResult.printResult();

@@ -3,14 +3,6 @@ package com.purexyz.uci.input.token;
 /** The interface Input token. */
 public interface InputToken {
 
-  /** The enum Type. */
-  enum Type {
-    /** Command type. */
-    COMMAND,
-    /** Input type. */
-    INPUT
-  }
-
   /**
    * Gets value.
    *
@@ -24,4 +16,12 @@ public interface InputToken {
    * @return the type
    */
   Type getType();
+
+  /** The enum Type. */
+  enum Type {
+    /** Command type. */
+    COMMAND,
+    /** Input type. */
+    INPUT
+  }
 }

@@ -77,8 +77,7 @@ public enum CommandInputToken implements InputToken {
   /** Quit command input token. */
   QUIT("quit");
 
-  private final String input;
-
+  /** The constant inputTokenMap. */
   private static final Map<String, CommandInputToken> inputTokenMap;
 
   static {
@@ -86,6 +85,9 @@ public enum CommandInputToken implements InputToken {
     inputTokenMap = new HashMap<>();
     Arrays.stream(values()).forEach(t -> inputTokenMap.put(t.getValue(), t));
   }
+
+  /** The Input. */
+  private final String input;
 
   /**
    * Is command boolean.

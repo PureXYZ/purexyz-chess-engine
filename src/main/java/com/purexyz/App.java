@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
+  /** The constant inputHandler. */
   private static final InputHandler inputHandler = InputHandler.getInstance();
 
   /**
@@ -27,6 +28,7 @@ public class App {
     }
   }
 
+  /** Print art. */
   private static void printArt() {
     log.info("Starting purexyz-chess-engine by PureXYZ");
     log.info("");

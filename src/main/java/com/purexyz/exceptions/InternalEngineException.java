@@ -34,6 +34,7 @@ public class InternalEngineException extends RuntimeException {
     exit();
   }
 
+  /** Exit. */
   private void exit() {
     log.error("Unrecoverable error, exiting");
     System.exit(1);

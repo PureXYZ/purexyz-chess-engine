@@ -9,6 +9,27 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class AbstractEngineCall implements Supplier<EngineResult> {
 
   /**
+   * Append with new line.
+   *
+   * @param builder the builder
+   * @param line the line
+   */
+  protected static void appendWithNewLine(StringBuilder builder, String line) {
+    builder.append(line);
+    builder.append(System.lineSeparator());
+  }
+
+  /**
+   * Normalize string string.
+   *
+   * @param line the line
+   * @return the string
+   */
+  protected static String normalizeString(String line) {
+    return line.strip().toLowerCase();
+  }
+
+  /**
    * Should call async boolean.
    *
    * @return the boolean
@@ -42,26 +63,5 @@ public abstract class AbstractEngineCall implements Supplier<EngineResult> {
     EngineResult result = compute();
     EngineState.setReady(true);
     return result;
-  }
-
-  /**
-   * Append with new line.
-   *
-   * @param builder the builder
-   * @param line the line
-   */
-  protected static void appendWithNewLine(StringBuilder builder, String line) {
-    builder.append(line);
-    builder.append(System.lineSeparator());
-  }
-
-  /**
-   * Normalize string string.
-   *
-   * @param line the line
-   * @return the string
-   */
-  protected static String normalizeString(String line) {
-    return line.strip().toLowerCase();
   }
 }

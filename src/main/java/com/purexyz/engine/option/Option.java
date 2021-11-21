@@ -13,14 +13,48 @@ import lombok.Setter;
 @Builder
 public class Option {
 
+  /** The Name. */
   private String name;
+
+  /** The Type. */
   private Type type;
+
+  /** The Default value. */
   private String defaultValue;
+
+  /** The Min. */
   private Integer min;
+
+  /** The Max. */
   private Integer max;
+
+  /** The Vars. */
   private List<String> vars;
+
+  /** The Current value. */
   private String currentValue;
+
+  /** The Setup. */
   private Consumer<Option> setup;
+
+  /**
+   * Build supported option option.
+   *
+   * @param supportedOption the supported option
+   * @return the option
+   */
+  public static Option buildSupportedOption(SupportedOption supportedOption) {
+    return builder()
+        .name(supportedOption.getName())
+        .type(supportedOption.getType())
+        .currentValue(supportedOption.getDefaultValue())
+        .defaultValue(supportedOption.getDefaultValue())
+        .min(supportedOption.getMin())
+        .max(supportedOption.getMax())
+        .vars(supportedOption.getVars())
+        .setup(supportedOption.getSetup())
+        .build();
+  }
 
   /**
    * To string string.
@@ -61,25 +95,6 @@ public class Option {
     return builder.toString();
   }
 
-  /**
-   * Build supported option option.
-   *
-   * @param supportedOption the supported option
-   * @return the option
-   */
-  public static Option buildSupportedOption(SupportedOption supportedOption) {
-    return builder()
-        .name(supportedOption.getName())
-        .type(supportedOption.getType())
-        .currentValue(supportedOption.getDefaultValue())
-        .defaultValue(supportedOption.getDefaultValue())
-        .min(supportedOption.getMin())
-        .max(supportedOption.getMax())
-        .vars(supportedOption.getVars())
-        .setup(supportedOption.getSetup())
-        .build();
-  }
-
   /** The enum Type. */
   @Getter
   @AllArgsConstructor
@@ -95,6 +110,7 @@ public class Option {
     /** String type. */
     STRING("string");
 
+    /** The Value. */
     private String value;
   }
 
@@ -105,12 +121,25 @@ public class Option {
     /** Enable async supported option. */
     ENABLE_ASYNC("Enable_Async", Type.CHECK, "true", null, null, null, OptionCalls.enableAsync());
 
+    /** The Name. */
     private String name;
+
+    /** The Type. */
     private Type type;
+
+    /** The Default value. */
     private String defaultValue;
+
+    /** The Min. */
     private Integer min;
+
+    /** The Max. */
     private Integer max;
+
+    /** The Vars. */
     private List<String> vars;
+
+    /** The Setup. */
     private Consumer<Option> setup;
   }
 }
