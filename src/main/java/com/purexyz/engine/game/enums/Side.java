@@ -7,5 +7,5 @@ public enum Side {
   BLACK;
 
   @Getter
-  private static final int TOTAL = 2;
+  private static final int total = 2;
 }

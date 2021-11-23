@@ -11,5 +11,5 @@ public enum Piece {
   KING;
 
   @Getter
-  private static final int TOTAL = 6;
+  private static final int total = 6;
 }
