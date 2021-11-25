@@ -1,7 +1,5 @@
 package com.purexyz.engine.game.enums;
 
-import lombok.Getter;
-
 public enum Piece {
   PAWN,
   KNIGHT,
@@ -10,6 +8,5 @@ public enum Piece {
   QUEEN,
   KING;
 
-  @Getter
-  private static final int total = 6;
+  public static final int TOTAL = values().length;
 }

@@ -27,11 +27,11 @@ public class BitBoardUtils {
   public static final long STARTING_BLACK_KING = 1152921504606846976L;
 
   public static long shiftUp(long bitBoard) {
-    return bitBoard << Square.getRowTotal();
+    return bitBoard << Square.ROW_TOTAL;
   }
 
   public static long shiftDown(long bitBoard) {
-    return bitBoard >>> Square.getRowTotal();
+    return bitBoard >>> Square.ROW_TOTAL;
   }
 
   public static long shiftLeft(long bitBoard) {
@@ -55,12 +55,12 @@ public class BitBoardUtils {
   }
 
   public static String toBinaryString(long bitBoard) {
-    return StringUtils.leftPad(Long.toBinaryString(bitBoard), Square.getTotal(), "0");
+    return StringUtils.leftPad(Long.toBinaryString(bitBoard), Square.TOTAL, "0");
   }
 
   public static String toPrettyString(long bitBoard) {
     List<String> reversedLines =
-        Arrays.stream(splitStringEvery(toBinaryString(bitBoard), Square.getRowTotal()))
+        Arrays.stream(splitStringEvery(toBinaryString(bitBoard), Square.ROW_TOTAL))
             .map(StringUtils::reverse)
             .toList();
     return String.join("\n", reversedLines);

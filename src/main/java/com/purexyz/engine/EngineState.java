@@ -1,6 +1,5 @@
 package com.purexyz.engine;
 
-import com.purexyz.engine.option.Option.SupportedOption;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +9,7 @@ public class EngineState {
 
   @Getter
   @Setter
-  private static boolean enableAsync = Boolean.parseBoolean(SupportedOption.ENABLE_ASYNC.getDefaultValue());
+  private static boolean enableAsync;
 
   private EngineState() {}
 

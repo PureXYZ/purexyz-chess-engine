@@ -7,7 +7,7 @@ public class Position {
 
   private Position() {}
 
-  private final long[][] bitBoards = new long[Side.getTotal()][Piece.getTotal()];
+  private final long[][] bitBoards = new long[Side.TOTAL][Piece.TOTAL];
 
   public static Position defaultPosition() {
     Position position = new Position();

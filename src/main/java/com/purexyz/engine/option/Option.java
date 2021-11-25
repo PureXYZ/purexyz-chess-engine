@@ -59,9 +59,9 @@ public class Option {
 
     if (vars != null && !vars.isEmpty()) {
       builder.append(" var");
-      for (String var : vars) {
+      for (String variable : vars) {
         builder.append(" ");
-        builder.append(var);
+        builder.append(variable);
       }
     }
 

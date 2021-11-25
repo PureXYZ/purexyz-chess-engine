@@ -8,8 +8,6 @@ public class OptionCalls {
   private OptionCalls() {}
 
   public static Consumer<Option> enableAsync() {
-    return (Option option) -> {
-      EngineState.setEnableAsync(Boolean.valueOf(option.getCurrentValue()));
-    };
+    return (Option option) -> EngineState.setEnableAsync(Boolean.parseBoolean(option.getCurrentValue()));
   }
 }
