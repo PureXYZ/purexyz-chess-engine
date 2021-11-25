@@ -8,10 +8,12 @@ import ch.qos.logback.core.ConsoleAppender;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.engine.EngineResult;
 import lombok.AllArgsConstructor;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 
 @Slf4j
+@ToString
 @AllArgsConstructor
 public class DebugCall extends AbstractEngineCall {
 

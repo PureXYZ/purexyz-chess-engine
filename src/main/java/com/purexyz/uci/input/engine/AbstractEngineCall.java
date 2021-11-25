@@ -11,13 +11,12 @@ public abstract class AbstractEngineCall implements Supplier<EngineResult> {
     builder.append(System.lineSeparator());
   }
 
-  protected static String normalizeString(String line) {
-    return line.strip().toLowerCase();
-  }
-
   public abstract boolean shouldCallAsync();
 
   protected abstract EngineResult compute();
+
+  @Override
+  public abstract String toString();
 
   @Override
   public final EngineResult get() {

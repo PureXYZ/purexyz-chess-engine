@@ -5,9 +5,11 @@ import com.purexyz.engine.option.Option;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.engine.EngineResult;
 import java.util.Collection;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@ToString
 public class UciCall extends AbstractEngineCall {
 
   @Override
