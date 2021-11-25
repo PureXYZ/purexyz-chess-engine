@@ -26,6 +26,34 @@ public class BitBoardUtils {
   public static final long STARTING_BLACK_QUEEN = 576460752303423488L;
   public static final long STARTING_BLACK_KING = 1152921504606846976L;
 
+  public static long shiftUp(long bitBoard) {
+    return bitBoard << Square.getRowTotal();
+  }
+
+  public static long shiftDown(long bitBoard) {
+    return bitBoard >>> Square.getRowTotal();
+  }
+
+  public static long shiftLeft(long bitBoard) {
+    return bitBoard >>> 1;
+  }
+
+  public static long shiftRight(long bitBoard) {
+    return bitBoard << 1;
+  }
+
+  public static long oneSquare(Square square) {
+    return 1L << square.ordinal();
+  }
+
+  public static boolean isOccupied(long bitBoard, Square square) {
+    return isEmpty(bitBoard & oneSquare(square));
+  }
+
+  public static boolean isEmpty(long bitBoard) {
+    return bitBoard == EMPTY;
+  }
+
   public static String toBinaryString(long bitBoard) {
     return StringUtils.leftPad(Long.toBinaryString(bitBoard), Square.getTotal(), "0");
   }
@@ -39,7 +67,7 @@ public class BitBoardUtils {
   }
 
   private static String[] splitStringEvery(String s, int interval) {
-    int arrayLength = (int) Math.ceil(((s.length() / (double) interval)));
+    int arrayLength = (int) Math.ceil((s.length() / (double) interval));
     String[] result = new String[arrayLength];
 
     int j = 0;
