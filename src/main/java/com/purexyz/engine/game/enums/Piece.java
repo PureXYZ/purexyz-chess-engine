@@ -17,8 +17,6 @@ public enum Piece {
 
   private char value;
 
-  public static final int TOTAL = values().length;
-
   private static final Map<Character, Piece> charMap = new HashMap<>();
 
   static {
@@ -26,6 +24,8 @@ public enum Piece {
       charMap.put(piece.getValue(), piece);
     }
   }
+
+  public static final int TOTAL = values().length;
 
   public static Piece fromChar(char pieceChar) {
     return charMap.get(pieceChar);
