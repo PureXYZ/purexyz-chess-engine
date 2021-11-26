@@ -1,12 +1,33 @@
 package com.purexyz.engine.game.enums;
 
+import java.util.HashMap;
+import java.util.Map;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public enum Piece {
-  PAWN,
-  KNIGHT,
-  BISHOP,
-  ROOK,
-  QUEEN,
-  KING;
+  PAWN('p'),
+  KNIGHT('n'),
+  BISHOP('b'),
+  ROOK('r'),
+  QUEEN('q'),
+  KING('k');
+
+  private char value;
 
   public static final int TOTAL = values().length;
+
+  private static final Map<Character, Piece> charMap = new HashMap<>();
+
+  static {
+    for (Piece piece : values()) {
+      charMap.put(piece.getValue(), piece);
+    }
+  }
+
+  public static Piece fromChar(char pieceChar) {
+    return charMap.get(pieceChar);
+  }
 }

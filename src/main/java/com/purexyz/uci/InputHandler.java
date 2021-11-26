@@ -1,7 +1,7 @@
 package com.purexyz.uci;
 
 import com.purexyz.engine.EngineState;
-import com.purexyz.exceptions.InternalEngineException;
+import com.purexyz.exceptions.CriticalEngineException;
 import com.purexyz.uci.input.InputMapper;
 import com.purexyz.uci.input.InputTokenizer;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
@@ -59,7 +59,7 @@ public class InputHandler {
         .whenComplete(
             (result, exception) -> {
               if (exception != null) {
-                throw new InternalEngineException(exception);
+                throw new CriticalEngineException(exception);
               } else {
                 result.printResult();
               }
