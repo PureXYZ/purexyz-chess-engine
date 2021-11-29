@@ -43,15 +43,8 @@ public class Move {
       return NULL_MOVE;
     }
 
-    Square from = Square.valueOf(moveString.substring(0, 2));
-    Square to = Square.valueOf(moveString.substring(2, 4));
-    Piece promotion = null;
-
-    if (moveString.length() > 4) {
-      promotion = Piece.fromChar(moveString.charAt(4));
-    }
-
-    return new Move(from, to, promotion);
+    // TODO Generate moves, then get the one that matches
+    return NULL_MOVE;
   }
 
   @Override
