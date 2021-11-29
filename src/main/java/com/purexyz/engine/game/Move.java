@@ -14,19 +14,18 @@ public class Move {
 
   private Square from;
   private Square to;
+  private Piece piece;
   private Piece promotion;
 
-  private static final Move NULL_MOVE = new Move(null, null);
+  public static final Move NULL_MOVE = new Move();
 
-  public Move(Square from, Square to, Piece promotion) {
+  private Move() {}
+
+  public Move(Square from, Square to, Piece piece, Piece promotion) {
     setFrom(from);
     setTo(to);
+    setPiece(piece);
     setPromotion(promotion);
-  }
-
-  public Move(Square from, Square to) {
-    setFrom(from);
-    setTo(to);
   }
 
   public void setPromotion(Piece piece) {

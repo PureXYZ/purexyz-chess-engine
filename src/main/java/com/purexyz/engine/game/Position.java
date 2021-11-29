@@ -29,15 +29,23 @@ public class Position {
     return position;
   }
 
-  public long getBitBoard(Side side, Piece piece) {
+  public void makeMove(Move move, Side side) {
+
+  }
+
+  public void unmakeMove(Move move, Side side) {
+
+  }
+
+  private long getBitBoard(Side side, Piece piece) {
     return bitBoards[side.ordinal()][piece.ordinal()];
   }
 
-  public void setBitBoard(Side side, Piece piece, long bitBoard) {
+  private void setBitBoard(Side side, Piece piece, long bitBoard) {
     bitBoards[side.ordinal()][piece.ordinal()] = bitBoard;
   }
 
-  public long[] getBitBoards(Side side) {
+  private long[] getBitBoards(Side side) {
     return bitBoards[side.ordinal()];
   }
 }
