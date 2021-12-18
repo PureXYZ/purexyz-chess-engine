@@ -29,9 +29,9 @@ public class DebugCall extends AbstractEngineCall {
     log.info("Computing debug call");
 
     if (debugOn) {
-      changeConsoleLogging("System.out", Level.ALL);
+      changeConsoleLogging("System.out", Level.INFO);
     } else {
-      changeConsoleLogging("System.err", Level.ERROR);
+      changeConsoleLogging("System.err", Level.ALL);
     }
 
     return EngineResult.emptyResult();

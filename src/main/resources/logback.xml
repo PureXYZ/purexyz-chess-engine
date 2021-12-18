@@ -6,7 +6,7 @@
     </encoder>
   </appender>
 
-  <logger name="com.purexyz" level="ERROR">
+  <logger name="com.purexyz" level="ALL">
     <appender-ref ref="CONSOLE"/>
   </logger>
 </configuration>
