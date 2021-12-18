@@ -17,7 +17,9 @@ public class App {
     while (scanner.hasNext()) {
       String input = scanner.nextLine();
       log.info("Received input: {}", input);
-      inputHandler.handleInput(input);
+      if (inputHandler.handleInput(input)) {
+        break;
+      }
     }
   }
 

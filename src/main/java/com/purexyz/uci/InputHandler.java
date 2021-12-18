@@ -6,6 +6,7 @@ import com.purexyz.uci.input.InputMapper;
 import com.purexyz.uci.input.InputTokenizer;
 import com.purexyz.uci.input.engine.AbstractEngineCall;
 import com.purexyz.uci.input.engine.EngineResult;
+import com.purexyz.uci.input.engine.calls.QuitCall;
 import com.purexyz.uci.input.token.InputToken;
 import java.util.Optional;
 import java.util.Queue;
@@ -31,7 +32,7 @@ public class InputHandler {
     return instance;
   }
 
-  public void handleInput(String input) {
+  public boolean handleInput(String input) {
 
     log.info("Handling input: {}", input);
 
@@ -40,10 +41,14 @@ public class InputHandler {
 
     if (engineCallOpt.isEmpty()) {
       log.warn("No command found for input");
-      return;
+      return false;
     }
 
     AbstractEngineCall engineCall = engineCallOpt.get();
+
+    if (engineCall instanceof QuitCall) {
+      return true;
+    }
 
     if (EngineState.isEnableAsync() && engineCall.shouldCallAsync()) {
       log.info("Calling async call: {}", engineCall);
@@ -52,6 +57,8 @@ public class InputHandler {
       log.info("Calling synchronous call: {}", engineCall);
       callSync(engineCall);
     }
+
+    return false;
   }
 
   private void callAsync(AbstractEngineCall engineCall) {
